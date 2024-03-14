@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:26:30 by tarzan            #+#    #+#             */
-/*   Updated: 2024/03/12 21:43:08 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/03/14 03:54:32 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 class	ServerData {
 	private:
-		std::string	_PORT;
-		std::string	_HOST;
-		std::string	_SERVER_NAME;
-		std::string	_ERROR_PAGE;
-		std::string	_INDEX;
-		std::string	_ROOT;
-		bool		_AUTO_INDEX;
-		std::map<std::string, std::string>	_LOCATION;
+		std::string	_PORT; // port
+		std::string	_HOST; // host
+		std::string	_SERVER_NAME; // server_name localhost
+		std::string	_ERROR_PAGE; // error_page 404 /404.html
+		std::string	_INDEX; // index.html
+		std::string	_ROOT; // root directory
+		bool		_AUTO_INDEX; // on or off
+		std::map<std::string, std::string>	_LOCATION; // location, value (root, index, autoindex, error_page)
 	public:
 		ServerData(void);
 		~ServerData(void);
@@ -53,9 +53,9 @@ class	ServerData {
 
 class	Server{
 	private:
-		ServerData	*_ServerData;
-		Server		*_Prev;
-		Server		*_Next;
+		ServerData	*_ServerData; // server data (port, host, server_name, error_page, index, root, autoindex, location)
+		Server		*_Prev; // previous server
+		Server		*_Next; // next server
 	public:
 		Server(void);
 		~Server(void);

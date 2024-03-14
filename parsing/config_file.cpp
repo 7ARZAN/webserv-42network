@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:33:07 by tarzan            #+#    #+#             */
-/*   Updated: 2024/03/13 20:51:50 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/03/13 22:44:56 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ ConfigFile::~ConfigFile(){
 	save();
 }
 
-std::string	ConfigFile::get(const std::string &key) const{
-	std::map<std::string, std::string>::const_iterator it = data.find(key);
-
-	if (it != data.end())
-		return it->second;
-	else
-		return "Error: " + key + " not found";
-}
+// std::string	ConfigFile::get(const std::string &key) const{
+// 	std::map<std::string, std::string>::const_iterator it = data.find(key);
+//
+// 	if (it != data.end())
+// 		return it->second;
+// 	else
+// 		return "Error: " + key + " not found";
+// }
 
 void	ConfigFile::checker(const std::string &key, const std::string &value){
 	std::map<std::string, std::string>::iterator it = data.find(key);
