@@ -6,7 +6,7 @@
 #    By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 11:38:20 by tarzan            #+#    #+#              #
-#    Updated: 2024/03/12 21:48:06 by tarzan           ###   ########.fr        #
+#    Updated: 2024/03/14 03:55:23 by elakhfif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ build/%.o: %.cpp
 
 clean:
 	rm -rf build
+	if [ -f Log ]; then rm -f Log; fi
 
 fclean: clean
 	rm -rf $(NAME)
