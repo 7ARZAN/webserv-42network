@@ -6,7 +6,7 @@
 #    By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/11 11:38:20 by tarzan            #+#    #+#              #
-#    Updated: 2024/03/14 03:55:23 by elakhfif         ###   ########.fr        #
+#    Updated: 2024/03/20 02:41:58 by elakhfif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CXXFLAGS = -Wall -Wextra -Werror
 all: build $(NAME)
 
 build:
-	mkdir -p build
+	if [ ! -d "build" ]; then mkdir build; fi
 
 $(NAME): $(OBJ)
 	clang++ $(CXXFLAGS) $(OBJ) -o $(NAME)
@@ -35,3 +35,5 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+
+re: fclean all

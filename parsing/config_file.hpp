@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:40:39 by tarzan            #+#    #+#             */
-/*   Updated: 2024/02/11 14:09:56 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/03/20 02:43:55 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class ConfigFile {
 		~ConfigFile();
 		std::string get(const std::string &key) const;
 		void	print() const;
+		void	redirect(const std::string &filename);
 		void	checker(const std::string &key, const std::string &value);
 		void	save();
 	private:

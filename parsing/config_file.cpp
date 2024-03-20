@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:33:07 by tarzan            #+#    #+#             */
-/*   Updated: 2024/03/13 22:44:56 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/03/20 02:43:38 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ ConfigFile::ConfigFile(const std::string &filename) : filename(filename)
 
 ConfigFile::~ConfigFile(){
 	save();
+}
+
+void	ConfigFile::redirect(const std::string &filename){
+	this->filename = filename;
 }
 
 // std::string	ConfigFile::get(const std::string &key) const{
