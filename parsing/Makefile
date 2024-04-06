@@ -6,7 +6,7 @@
 #    By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/13 20:47:30 by tarzan            #+#    #+#              #
-#    Updated: 2024/03/13 20:58:23 by tarzan           ###   ########.fr        #
+#    Updated: 2024/04/06 02:06:09 by elakhfif         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 all: build $(NAME)
 	
 build:
-		mkdir build
+	mkdir -p build
 
 build/%.o: %.cpp $(HEADER)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -35,10 +35,14 @@ $(NAME): $(OBJ) $(HEADER)
 
 clean:
 	rm -rf build
+	if [ -f "meme.txt" ]; then rm meme.txt; fi
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+run: all
+	./$(NAME)
 
 .PHONY: all clean fclean re
