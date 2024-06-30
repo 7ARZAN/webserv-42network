@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 11:23:07 by tarzan            #+#    #+#             */
-/*   Updated: 2024/03/14 03:53:03 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/06/30 03:55:15 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define ROUTES_DATA_HPP
 
 # include <iostream>
+
+// [ Routes_data ]: class that contains the data of a route in other word [REQUEST INFORMATIONS] 
+// [URL]: the url of the route
+// [RootPath]: the root path of the route
+// [Methods]: the method of the route (GET, POST, DELETE)
+// [Brows]: if the route is a browsing route or not [for autoindex]
+// [isRedirection]: if the route is a redirection route or not [for redirection]
+// [Redirect]: the redirection url
+// [Next]: the next route in the list
+// [Prev]: the previous route in the list
 
 class	Routes_data{
 	private:
@@ -25,12 +35,12 @@ class	Routes_data{
 			DELETE,
 			NONE
 		};
-		Methods		_Methods; //method of the route (GET, POST, DELETE)
-		bool		_Brows; //if the route is a browsing route or not
-		bool		_isRedirection; //if the route is a redirection route or not
-		std::string _Redirect; //the redirection url
-		Routes_data	*_Next; //next route in the list
-		Routes_data	*_Prev; //previous route in the list
+		Methods		_Methods;
+		bool		_Brows;
+		bool		_isRedirection;
+		std::string	_Redirect;
+		Routes_data	*_Next;
+		Routes_data	*_Prev;
 	public:
 		Routes_data(const std::string &url, const std::string &root); //constructor
 		~Routes_data(void); //destructor
