@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:33:07 by tarzan            #+#    #+#             */
-/*   Updated: 2024/03/20 02:43:38 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:16:07 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ConfigFile::redirect(const std::string &filename){
 	this->filename = filename;
 }
 
+//get function are made for future use example: get the value of a key in the map
+//
 // std::string	ConfigFile::get(const std::string &key) const{
 // 	std::map<std::string, std::string>::const_iterator it = data.find(key);
 //

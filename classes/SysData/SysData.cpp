@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 15:06:52 by tarzan            #+#    #+#             */
-/*   Updated: 2024/02/11 15:35:32 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/01 05:31:14 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	main(){
 	SysData sysdata;
 	sysdata.setLogPath("./Log");
 	sysdata.setCGI(true);
-	sysdata.setMaxClientSize(0);
+	sysdata.setMaxClientSize(1000);
 	std::cout << "CGI: " << sysdata.getCGI() << std::endl;
 	std::cout << "LogPath: " << sysdata.getLogPath() << std::endl;
 	std::cout << "MaxClientSize: " << sysdata.getMaxClientSize() << std::endl;
 	sysdata.OpenLogFile();
 	sysdata.WriteLogFile("Hello World");
 	sysdata.WriteLogFile("im tarzan");
-	//sysdata.CloseLogFile();
+	sysdata.CloseLogFile();
 	return (0);
 }

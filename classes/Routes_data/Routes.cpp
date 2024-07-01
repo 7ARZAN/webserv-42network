@@ -6,13 +6,14 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 11:31:37 by tarzan            #+#    #+#             */
-/*   Updated: 2024/06/30 03:51:24 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/07/01 02:30:44 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Routes.hpp"
 #include <iostream>
 
+//root is the path of the file in the server (ex: /home/user) where the files are stored
 Routes_data::Routes_data(const std::string &url, const std::string &root)
 	: _URL(url), _RootPath(root), _Brows(false), _isRedirection(false), _Next(NULL), _Prev(NULL){}
 
