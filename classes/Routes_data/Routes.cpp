@@ -6,7 +6,7 @@
 /*   By: tarzan <elakhfif@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 11:31:37 by tarzan            #+#    #+#             */
-/*   Updated: 2024/07/01 02:30:44 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/07/04 07:02:38 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ bool	Routes_data::useMethod(const std::string &methodName) const{
 		return (true);
 	else if (methodName == "DELETE" && this->_Methods == DELETE)
 		return (true);
+	else if (methodName == "NONE" && this->_Methods == NONE)
+		return (false);
 	return (false);
 }
 
@@ -95,30 +97,31 @@ Routes_data	*Routes_data::getPrev(void){
 	return (this->_Prev);
 }
 
-std::ostream	&operator<<(std::ostream &out, const Routes_data &route){
-	out << "URL: " << route.getUrl() << std::endl;
-	out << "Root: " << route.getRoot() << std::endl;
-	out << "Method: ";
-	if (route.useMethod("GET"))
-		out << "GET" << std::endl;
-	else if (route.useMethod("POST"))
-		out << "POST" << std::endl;
-	else if (route.useMethod("DELETE"))
-		out << "DELETE" << std::endl;
-	else
-		out << "NONE" << std::endl;
-	out << "Browsing: " << route.isBrowsing() << std::endl;
-	out << "Redirection: " << route.isRedirection() << std::endl;
-	if (route.isRedirection())
-		out << "Redirect to: " << route.getRedirection() << std::endl;
-	return (out);
-}
 
-int		main(void){
-	Routes_data	route("/index.html", "/home/user");
-	route.setMethod("GET");
-	route.setBrowsing(true);
-	route.setRedirection("/home/user/redirect");
-	std::cout << route << std::endl;
-	return (0);
-}
+// std::ostream	&operator<<(std::ostream &out, const Routes_data &route){
+// 	out << "URL: " << route.getUrl() << std::endl;
+// 	out << "Root: " << route.getRoot() << std::endl;
+// 	out << "Method: ";
+// 	if (route.useMethod("GET"))
+// 		out << "GET" << std::endl;
+// 	else if (route.useMethod("POST"))
+// 		out << "POST" << std::endl;
+// 	else if (route.useMethod("DELETE"))
+// 		out << "DELETE" << std::endl;
+// 	else
+// 		out << "NONE" << std::endl;
+// 	out << "Browsing: " << route.isBrowsing() << std::endl;
+// 	out << "Redirection: " << route.isRedirection() << std::endl;
+// 	if (route.isRedirection())
+// 		out << "Redirect to: " << route.getRedirection() << std::endl;
+// 	return (out);
+// }
+//
+// int		main(void){
+// 	Routes_data	route("/index.html", "/home/user");
+// 	route.setMethod("GET");
+// 	route.setBrowsing(true);
+// 	route.setRedirection("/home/user/redirect");
+// 	std::cout << route << std::endl;
+// 	return (0);
+// }
