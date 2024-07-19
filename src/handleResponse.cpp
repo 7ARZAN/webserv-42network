@@ -2,19 +2,6 @@
 #include "tools.hpp"
 
 static int	checkRequestFormat(const Request &request){
-	// std::string	method = request.getMethod();
-	// std::string	version = request.getVersion();
-	// std::string	allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'*+-.^_`|~0123456789";
-	// std::string	allowedVersion = "HTTP/1.1";
-	//
-	// if (method != "GET" && method != "POST" && method != "DELETE")
-	// 	return 405;
-	// if (version != allowedVersion)
-	// 	return 505;
-	// for (size_t i = 0; i < request.getUri().size(); i++){
-	// 	if (allowedChars.find(request.getUri()[i]) == std::string::npos)
-	// 		return 400;
-	// }
 	return 200;
 }
 
@@ -50,5 +37,5 @@ void	handleResponse(int fd, Response &Packet){
 	// 	DELETEmethod(Packet);
 	// else
 	// 	Packet.setStatusCode(405);
-	//Packet.sendResponse(fd);
+	Packet.sendResponse(fd);
 }

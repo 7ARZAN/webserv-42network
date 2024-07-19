@@ -8,7 +8,7 @@ static std::string	full_path(){
 	path = getcwd(NULL, 0);
 	RootPath = path;
 	free(path);
-	return RootPath;
+	return (RootPath);
 }
 
 static std::string	RootPath(){
@@ -17,7 +17,7 @@ static std::string	RootPath(){
 	RootPath = full_path();
 	if (RootPath[RootPath.size() - 1] != '/')
 		RootPath += "/";
-	return RootPath;
+	return (RootPath);
 }
 
 bool	handleAutoIndex(Response &Packet){
@@ -30,18 +30,18 @@ bool	handleAutoIndex(Response &Packet){
 	if (RequestPath[RequestPath.size() - 1] != '/')
 		RequestPath += "/";
 	if ((dir = opendir(RequestPath.c_str())) == NULL)
-		return false;
+		return (false);
 	while ((ent = readdir(dir)) != NULL){
 		if (ent->d_type == DT_REG){
 			IndexFile = ent->d_name;
 			if (IndexFile == "index.html"){
 				closedir(dir);
-				return Packet.FileReader(RequestPath + IndexFile);
+				return (Packet.FileReader(RequestPath + IndexFile));
 			}
 		}
 	}
 	closedir(dir);
-	return true;
+	return (true);
 }
 
 bool	GETmethod(Response &Packet){
@@ -64,7 +64,7 @@ bool	GETmethod(Response &Packet){
 		return handleAutoIndex(Packet);
 	}
 	close(fd);
-	return Packet.FileReader(RequestPath);
+	return (Packet.FileReader(RequestPath));
 }
 
 int	main(){

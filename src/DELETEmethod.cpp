@@ -56,20 +56,20 @@ bool	DELETEmethod(Response &Packet){
 		// if (CGI){
 		// 	//implement CGI for delete here !! and return
 		// }
-		if (deletePath(FilePath) == STAT_SUCCESS && rmdir(FilePath.c_str()) == STAT_SUCCESS){
-			Packet.setStatusCode(204);
-			return (true);
-		}
+		// if (deletePath(FilePath) == STAT_SUCCESS && rmdir(FilePath.c_str()) == STAT_SUCCESS){
+		// 	Packet.setStatusCode(204);
+		// 	return (true);
+		// }
 	}
 	else
 	{
 		// if (CGI){
 		// 	//implement CGI for delete here !! and return
 		// 		}
-		if (deleteFile(FilePath) == STAT_SUCCESS && remove(FilePath.c_str()) == STAT_SUCCESS){
-			Packet.setStatusCode(204);
-			return (true);
-		}
+		// if (deleteFile(FilePath) == STAT_SUCCESS && remove(FilePath.c_str()) == STAT_SUCCESS){
+		// 	Packet.setStatusCode(204);
+		// 	return (true);
+		// }
 	}
 	Packet.setStatusCode(500);
 	return (true);
@@ -84,5 +84,5 @@ int	main(){
 	Packet.setRequest(Request);
 	DELETEmethod(Packet);
 	std::cout << Packet.getStatusCode() << std::endl;
-	return (0);
+	return 0;
 }

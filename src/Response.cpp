@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/18 19:29:27 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/19 01:57:50 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ bool	Response::_MimeTypes(){
 
 	file.open("MimeTypes");
 	if (!file.is_open())
-		return false;
+		return (false);
 	while (std::getline(file, line)){
 		temp = ohmysplit(line, "=");
 		_MimeType[trim(temp[0], " ")] = trim(temp[1], " ");
 	}
 	file.close();
-	return true;
+	return (true);
 }
 
 bool	Response::_StatusTypes(){
@@ -37,29 +37,29 @@ bool	Response::_StatusTypes(){
 
 	file.open("HTTPstatus");
 	if (!file.is_open())
-		return false;
+		return (false);
 	while (std::getline(file, line)){
 		temp = ohmysplit(line, "=");
 		_StatusType[StringToInteger(trim(temp[0], " "))] = trim(temp[1], " ");
 	}
 	file.close();
-	return true;
+	return (true);
 }
 
 bool	Response::setMetadata(const std::string &key, const std::string &value){
 
 	if (key.empty() || value.empty())
-		return false;
+		return (false);
 	_Metadata[key] = value;
-	return true;
+	return (true);
 }
 
 bool	Response::setBody(const std::string &body){
 	if (body.empty())
-		return false;
+		return (false);
 	_Body = body;
 	setMetadata("Content-Length", std::to_string(_Body.size()));
-	return true;
+	return (true);
 }
 
 std::string	Response::_GetFileExtension(const std::string &path){
@@ -69,7 +69,7 @@ std::string	Response::_GetFileExtension(const std::string &path){
 		return ("text/html");
 	if (path.find_last_of(".") != std::string::npos)
 		extension = path.substr(path.find_last_of(".") + 1);
-	return extension;
+	return (extension);
 }
 
 std::string	Response::_GetPacketDate(){
@@ -78,9 +78,9 @@ std::string	Response::_GetPacketDate(){
 	char		buffer[80];
 
 	time(&rawtime);
-	timeinfo = localtime(&rawtime);
-	strftime(buffer, 80, "%a, %d %b %Y %H:%M:%S GMT", timeinfo);
-	return buffer;
+	timeinfo = localtime(&rawtime); // [Tue Nov 15 08:12:31 1994]
+	strftime(buffer, 80, "%a, %d %b %Y %H:%M:%S GMT", timeinfo); // format date to be like: "Tue, 15 Nov 1994 08:12:31 GMT"
+	return (buffer);
 }
 
 void	Response::_GenerateHEAD(){
@@ -97,35 +97,35 @@ void	Response::_GenerateHEAD(){
 
 bool	Response::_GenerateResponsePacket(){
 	if (_HEAD.empty())
-		return false;
+		return (false);
 	_ResponsePacket = _HEAD + _Body;
-	return true;
+	return (true);
 }
 
 bool	Response::setStatusCode(int code){
 	if (_StatusType.find(code) == _StatusType.end())
-		return false;
+		return (false);
 	_statusCode = std::to_string(code) + " " + _StatusType[code];
-	return true;
+	return (true);
 }
 
 int	Response::getStatusCode(){
 	std::string	code;
 
 	code = _statusCode.substr(0, 3);
-	return StringToInteger(code);
+	return (StringToInteger(code));
 }
 
 bool	Response::sendResponse(int fd){
 	if (_RequestPacket == NULL)
-		return false;
+		return (false);
 	_MimeTypes();
 	_StatusTypes();
 	_GenerateHEAD();
 	_GenerateResponsePacket();
 	if (write(fd, _ResponsePacket.c_str(), _ResponsePacket.size()) == -1) // send response to client [browser]
-		return false;
-	return true;
+		return (false); // if failed to send response
+	return (true);
 }
 
 bool	Response::Redirect(const std::string &uri, bool isPermanent){
@@ -141,7 +141,7 @@ bool	Response::Redirect(const std::string &uri, bool isPermanent){
 	setBody("");
 	_GenerateHEAD();
 	_GenerateResponsePacket();
-	return true;
+	return (true);
 }
 
 bool	Response::FileReader(const std::string &path){
@@ -150,10 +150,10 @@ bool	Response::FileReader(const std::string &path){
 	char			buffer[1024];
 
 	if (path.empty())
-		return false;
+		return (false);
 	file.open(path, std::ios::in);
 	if (!file.is_open())
-		return false;
+		return (false);
 	while (!file.eof()){
 		file.read(buffer, 1024);
 		bytes = file.gcount();
@@ -162,7 +162,7 @@ bool	Response::FileReader(const std::string &path){
 	file.close();
 	setMetadata("Content-Type", _MimeType[_GetFileExtension(path)]);
 	setMetadata("Content-Length", std::to_string(_Body.size()));
-	return true;
+	return (true);
 }
 
 Response::Response(){
@@ -187,5 +187,5 @@ void	Response::setRequest(Request &request){
 }
 
 Request	*Response::getRequest(){
-	return _RequestPacket;
+	return (_RequestPacket);
 }
