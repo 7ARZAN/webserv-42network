@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:45:14 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/18 15:10:40 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/20 16:59:41 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,32 @@
 # include <string>
 # include <map>
 # include <sys/types.h>
+# include <dirent.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include "RequestParsing.hpp"
 
+# define STAT_FAIL 1
+# define STAT_SUCCESS 0
+
 class	Response
 {
 	private:
 		Request		*_RequestPacket;
-		std::map<int, std::string>	_StatusType;
-		std::map<std::string, std::string>	_MimeType;
 		std::string	_statusCode;
 		std::string	_ResponsePacket;
 		std::string	_Body;
 		std::string	_HEAD;
 		std::map<std::string, std::string>	_Metadata;
 
-		bool	_MimeTypes();
-		bool	_StatusTypes();
 		std::string	_GetPacketDate();
 		void	_GenerateHEAD();
-		bool	_GenerateResponsePacket();
 		std::string	_GetFileExtension(const std::string &path);
 
 	public:
-		Response();
+		Response(Request *req);
+		Response(int status_code);
 		~Response();
 		
 		int	getStatusCode();
@@ -58,7 +58,16 @@ class	Response
 
 		bool	FileReader(const std::string &path);
 
-		//bool	isBusy();
+		void	handleResponse();
+
+		std::string	RenderResponse();
+		void		DELETE();
+		void		GET();
+		void		POST();
+		void		POSTFILE(std::string boundary);
 };
+
+bool	isExist(const std::string &fullPath);
+bool	is_dir(std::string path);
 
 #endif

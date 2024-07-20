@@ -40,7 +40,11 @@ class ws_config {
 
 		// search for a table by name
 		ws_config_table *search_table(std::string table_name);
+		ws_config_table *search_table_port(int port);
 		void parse_string(std::string conf);
 };
+
+
+std::string search_val_table(ws_config_table *table, std::string key);
 
 #endif

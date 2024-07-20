@@ -1,82 +1,61 @@
-#include "Response.hpp"
-#include <dirent.h>
+#include "../includes/Response.hpp"
+#include "../includes/webserver.hpp"
 
-static std::string	full_path(){
-	char	*path;
-	std::string	RootPath;
+std::string	read_file(std::string filename){
+	std::ifstream	config_file(filename);
+	std::ostringstream fcontent;
 
-	path = getcwd(NULL, 0);
-	RootPath = path;
-	free(path);
-	return (RootPath);
+	if (!config_file.is_open()){
+		std::cerr << "cant open the conf file" << std::endl;
+		return ("");
+	}
+	fcontent << config_file.rdbuf();
+	return fcontent.str();
 }
 
-static std::string	RootPath(){
-	std::string	RootPath;
+std::string	list_dir(std::string path){
+	DIR *dir = opendir(path.c_str());
+	struct dirent *dirfiles;
+	std::string	response;
 
-	RootPath = full_path();
-	if (RootPath[RootPath.size() - 1] != '/')
-		RootPath += "/";
-	return (RootPath);
-}
-
-bool	handleAutoIndex(Response &Packet){
-	std::string	RequestPath;
-	DIR			*dir;
-	struct dirent	*ent;
-	std::string		IndexFile;
-
-	RequestPath = RootPath() + Packet.getRequest()->getUri();
-	if (RequestPath[RequestPath.size() - 1] != '/')
-		RequestPath += "/";
-	if ((dir = opendir(RequestPath.c_str())) == NULL)
-		return (false);
-	while ((ent = readdir(dir)) != NULL){
-		if (ent->d_type == DT_REG){
-			IndexFile = ent->d_name;
-			if (IndexFile == "index.html"){
-				closedir(dir);
-				return (Packet.FileReader(RequestPath + IndexFile));
-			}
-		}
+	if (dir == NULL)
+		throw(std::runtime_error("[List Dir]: cant open dir"));
+	while ((dirfiles = readdir(dir)) != NULL){
+		response += "<a href=" + std::string(dirfiles->d_name) + ">" +
+			std::string(dirfiles->d_name) +"</a><br>\n";
 	}
 	closedir(dir);
-	return (true);
+	return (response);
 }
 
-bool	GETmethod(Response &Packet){
-	std::string	RequestPath;
-	struct stat	fileStat;
-	int			fd;
 
-	RequestPath = RootPath() + Packet.getRequest()->getUri();
-	std::cout << "RequestPath: " << RequestPath << std::endl;
-	if (RequestPath[RequestPath.size() - 1] == '/')
-		return handleAutoIndex(Packet);
-	else if ((fd = open(RequestPath.c_str(), O_RDONLY)) == -1)
-		return false;
-	if (fstat(fd, &fileStat) == -1){
-		close(fd);
-		return false;
+void	Response::GET(){
+	std::string rootPath = search_val_table(_RequestPacket->getConfig(), "root_dir");
+	std::string FilePath = rootPath + _RequestPacket->getUri();
+
+	if (isExist(FilePath) == false){
+		setStatusCode(404);
+		return;
 	}
-	if (S_ISDIR(fileStat.st_mode)){
-		close(fd);
-		return handleAutoIndex(Packet);
+	if (is_dir(FilePath) == true ){
+		if (FilePath.back() != '/'){
+			setMetadata("Location", _RequestPacket->getUri() + "/");
+			setStatusCode(301);
+			return;
+		}
+		if (isExist(FilePath + "index.html") == true)
+			FilePath += "index.html";
+		else {
+			try {
+				if (dirlist == false)
+					throw (false);
+				logx.info("[List Dir]: " + FilePath);
+				_Body = list_dir(FilePath);
+			}catch(...){
+				setStatusCode(404);
+			}
+			return;
+		}
 	}
-	close(fd);
-	return (Packet.FileReader(RequestPath));
-}
-
-int	main(){
-	Response	Packet;
-	Request		RequestPacket;
-
-	RequestPacket.setMethod("GET");
-	RequestPacket.setUri("index.html");
-	Packet.setRequest(RequestPacket);
-	if (GETmethod(Packet))
-		std::cout << "File Found" << std::endl;
-	else
-		std::cout << "File Not Found" << std::endl;
-	return 0;
+	_Body = read_file(FilePath);
 }

@@ -6,31 +6,49 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 01:51:39 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/18 13:10:02 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/20 05:13:10 by lmongol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RequestParsing.hpp"
-#include <vector>
-#include <sstream>
+#include "../includes/RequestParsing.hpp"
+#include "../includes/Response.hpp"
+#include "../includes/webserver.hpp"
+
+std::vector<std::string> ohmysplit(const std::string &str, const std::string &sep)
+{
+	size_t						start = 0;
+	size_t						end = 0;
+	std::string					holder;
+	std::vector<std::string>	result;
+
+	do{
+		end = str.find(sep, start);
+
+		holder = str.substr(start, end - start);
+		if (holder[holder.length() - 1] == '\r')
+			holder[holder.length() - 1] = '\0';
+
+		result.push_back(holder);
+		start = end + sep.length();
+	} while (end != std::string::npos);
+
+	return (result);
+}
 
 std::string	correct_Format(const std::string &str)
 {
-	size_t	length = 0;
+	size_t	length;
 
-	for (; str[length]; length++){
+	length = -1;
+	while (str[++length])
 		if (str[length] == '\r')
 			break;
-	}
 
 	if (length != str.length())
 		return (str.substr(0, length));
 	return (str);
 }
 
-void	Request::appendRequestPacket(const std::string &requestPacket){
-	_RequestPacket.append(requestPacket);
-}
 
 void	Request::setMethod(const std::string &method){
 	_Method = method;
@@ -60,19 +78,55 @@ bool	Request::parseRequest(){
 	std::stringstream	header;
 	std::string	line;
 	std::vector<std::string> list;
+	ssize_t		body_size;
 
-	header << _RequestPacket.substr(0, _RequestPacket.find("\r\n\r\n"));
-	_Body = _RequestPacket.substr(_RequestPacket.find("\r\n\r\n") + 4);
+	if (request->status == BODY_READ){
+		_Body += request->buffer;
+		request->buffer.erase();
+		request->status = READY;
+		return (true);
+	}
+	header << request->delivery.substr(0, request->delivery.find("\r\n\r\n"));
 	std::getline(header, line);
 	list = ohmysplit(line, " ");
 	if (list.size() != 3)
 		return (false);
 	setMethod(correct_Format(list[0]));
+	if (_Method != "POST" && _Method != "GET" && _Method != "DELETE")
+		throw (Response(501));
 	setUri(correct_Format(list[1]));
+	if (_Uri.size() > PATH_MAX)
+		throw (Response(415));
 	setVersion(correct_Format(list[2]));
-	return parseMetadata(header);
+	parseMetadata(header);
+	if (getMetadata("Content-Length").empty() == true && _Method == "POST")
+		throw (Response(411));
+
+	body_size = std::atoi(getMetadata("Content-Length").c_str());
+
+	if (body_size > INT_MAX || body_size < 0 || getMetadata("Content-Length").size() > 9)
+		throw (Response(413));
+
+	if (body_size <= (int) request->buffer.size()){
+		_Body = request->buffer.substr(0, body_size);
+		request->left = 0;
+		request->status = READY; 
+		request->buffer.erase(request->buffer.begin(),
+				request->buffer.begin() + body_size);
+	}
+	else
+	{
+		_Body = request->buffer.substr(0, request->buffer.size());
+		request->left = body_size - request->buffer.size();
+		request->buffer.erase(0, request->buffer.size());
+		request->status = READING_BODY;
+	}
+	return (true);
 }
 
+ws_config_table	*Request::getConfig(){
+	return (this->config);
+}
 
 bool	Request::parseMetadata(std::stringstream &header){
 	std::string	line;
@@ -121,7 +175,7 @@ std::string	Request::getUri() const{
 	return (_Uri);
 }
 
-std::string	Request::getBody() const{
+std::string	&Request::getBody(){
 	return (_Body);
 }
 
@@ -139,12 +193,10 @@ std::map<std::string, std::string>	Request::getCookies() const{
 	return (_cookies);
 }
 
-Request::Request(){
-	_RequestPacket = "";
-	_Method = "";
-	_Uri = "";
-	_Version = "";
-	_Body = "";
+Request::Request(ws_delivery *request, ws_delivery *response, ws_config_table *table){
+	this->config = table;
+	this->request = request;
+	this->response = response;
 }
 
 Request::~Request(){

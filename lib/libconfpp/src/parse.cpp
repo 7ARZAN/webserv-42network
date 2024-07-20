@@ -13,10 +13,10 @@
 
 int cline = 1;
 
-char expand_escaped(char escape_seq){
-	char escaped[] = {0x8, 0x9, 0xa, 0xc, 0xd, 0x22, 0x5c};
-	char symbol[] = {'b', 't', 'n', 'f', 'r', '"', '\\'};
-	int i = -1;
+char	expand_escaped(char escape_seq){
+	char	escaped[] = {0x8, 0x9, 0xa, 0xc, 0xd, 0x22, 0x5c};
+	char	symbol[] = {'b', 't', 'n', 'f', 'r', '"', '\\'};
+	int	i = -1;
 
 	while (++i < 7){
 		if (escape_seq == symbol[i])
@@ -25,11 +25,11 @@ char expand_escaped(char escape_seq){
 	return (escape_seq);
 }
 
-std::string extract_string (std::string base_string, std::string delims, int *start){
-	int idx = *start;
-	int offset = 0;
-	int len = 0;
-	char qtype;
+std::string	extract_string(std::string base_string, std::string delims, int *start){
+	int	idx = *start;
+	int	offset = 0;
+	int	len = 0;
+	char	qtype;
 
 	// counting the length of the key 
 	while (idx < (int) base_string.length() && strschr(delims, base_string[idx]) == -1){
@@ -102,7 +102,7 @@ ws_config_container *parse_key_val(std::string conf, int *start){
 	return container;
 }
 
-ws_config_table *ws_config::parse_table(std::string conf, int *idx){
+ws_config_table	*ws_config::parse_table(std::string conf, int *idx){
 	int i = *idx;
 	size_t table_idx = 0;
 	std::string table_name;
@@ -129,7 +129,7 @@ ws_config_table *ws_config::parse_table(std::string conf, int *idx){
 	return (new_table);
 }
 
-void ws_config::parse_string(std::string conf){
+void	ws_config::parse_string(std::string conf){
 	int			idx = 0;
 	int			i;
 	int			conflen = conf.length();

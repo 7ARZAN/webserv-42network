@@ -46,7 +46,7 @@ ws_config::ws_config(ws_config &x){
 	ws_config_container *table;
 
 	while (++i < (int) x.core.size()){
-		if (core[i] != NULL){
+		if (x.core[i] != NULL){
 			cont = new ws_config_table;
 			cont->table_name = x.core[i]->table_name;
 			j = -1;

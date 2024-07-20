@@ -6,45 +6,12 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/19 01:57:50 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:59:34 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Response.hpp"
-#include <fstream>
-#include <vector>
-
-bool	Response::_MimeTypes(){
-	std::ifstream	file;
-	std::string		line;
-	std::vector<std::string>	temp;
-
-	file.open("MimeTypes");
-	if (!file.is_open())
-		return (false);
-	while (std::getline(file, line)){
-		temp = ohmysplit(line, "=");
-		_MimeType[trim(temp[0], " ")] = trim(temp[1], " ");
-	}
-	file.close();
-	return (true);
-}
-
-bool	Response::_StatusTypes(){
-	std::ifstream	file;
-	std::string		line;
-	std::vector<std::string>	temp;
-
-	file.open("HTTPstatus");
-	if (!file.is_open())
-		return (false);
-	while (std::getline(file, line)){
-		temp = ohmysplit(line, "=");
-		_StatusType[StringToInteger(trim(temp[0], " "))] = trim(temp[1], " ");
-	}
-	file.close();
-	return (true);
-}
+#include "../includes/Response.hpp"
+#include "../includes/webserver.hpp"
 
 bool	Response::setMetadata(const std::string &key, const std::string &value){
 
@@ -78,8 +45,8 @@ std::string	Response::_GetPacketDate(){
 	char		buffer[80];
 
 	time(&rawtime);
-	timeinfo = localtime(&rawtime); // [Tue Nov 15 08:12:31 1994]
-	strftime(buffer, 80, "%a, %d %b %Y %H:%M:%S GMT", timeinfo); // format date to be like: "Tue, 15 Nov 1994 08:12:31 GMT"
+	timeinfo = localtime(&rawtime);
+	strftime(buffer, 80, "%a, %d %b %Y %H:%M:%S GMT", timeinfo);
 	return (buffer);
 }
 
@@ -88,24 +55,26 @@ void	Response::_GenerateHEAD(){
 
 	_HEAD = "HTTP/1.1 " + _statusCode + "\r\n";
 	_HEAD += "Date: " + _GetPacketDate() + "\r\n";
-	while (it = _Metadata.begin(), it != _Metadata.end()){
+	it = _Metadata.begin();
+	while (it != _Metadata.end()){
 		_HEAD += it->first + ": " + it->second + "\r\n";
 		it++;
 	}
 	_HEAD += "\r\n";
 }
 
-bool	Response::_GenerateResponsePacket(){
+std::string Response::RenderResponse(){
+	std::string resp;
 	if (_HEAD.empty())
-		return (false);
-	_ResponsePacket = _HEAD + _Body;
-	return (true);
+		_GenerateHEAD();
+	resp = _HEAD + _Body;
+	return (resp);
 }
 
 bool	Response::setStatusCode(int code){
-	if (_StatusType.find(code) == _StatusType.end())
+	if (http_status.find(code) == http_status.end())
 		return (false);
-	_statusCode = std::to_string(code) + " " + _StatusType[code];
+	_statusCode = std::to_string(code) + " " + http_status[code];
 	return (true);
 }
 
@@ -113,19 +82,7 @@ int	Response::getStatusCode(){
 	std::string	code;
 
 	code = _statusCode.substr(0, 3);
-	return (StringToInteger(code));
-}
-
-bool	Response::sendResponse(int fd){
-	if (_RequestPacket == NULL)
-		return (false);
-	_MimeTypes();
-	_StatusTypes();
-	_GenerateHEAD();
-	_GenerateResponsePacket();
-	if (write(fd, _ResponsePacket.c_str(), _ResponsePacket.size()) == -1) // send response to client [browser]
-		return (false); // if failed to send response
-	return (true);
+	return (std::atoi(code.c_str()));
 }
 
 bool	Response::Redirect(const std::string &uri, bool isPermanent){
@@ -140,8 +97,20 @@ bool	Response::Redirect(const std::string &uri, bool isPermanent){
 	setMetadata("Connection", "close");
 	setBody("");
 	_GenerateHEAD();
-	_GenerateResponsePacket();
+	// _GenerateResponsePacket();
 	return (true);
+}
+
+
+void	Response::handleResponse(){
+	if (_RequestPacket == NULL)
+		return ;
+	if (_RequestPacket->getMethod() == "POST")
+		POST();
+	else if (_RequestPacket->getMethod() == "GET")
+		GET();
+	else if (_RequestPacket->getMethod() == "DELETE")
+		DELETE();
 }
 
 bool	Response::FileReader(const std::string &path){
@@ -160,23 +129,26 @@ bool	Response::FileReader(const std::string &path){
 		_Body.append(buffer, bytes);
 	}
 	file.close();
-	setMetadata("Content-Type", _MimeType[_GetFileExtension(path)]);
+	setMetadata("Content-Type", mime_types[_GetFileExtension(path)]);
 	setMetadata("Content-Length", std::to_string(_Body.size()));
 	return (true);
 }
 
-Response::Response(){
-	if (_MimeType.empty() || _StatusType.empty()){
-		_MimeTypes();
-		_StatusTypes();
-	}
+Response::Response(Request *req){
 	_statusCode = "200 OK";
 	_HEAD = "";
 	_ResponsePacket = "";
 	_Body = "";
-	_RequestPacket = NULL;
+	_RequestPacket = req;
 	setMetadata("SERVER", "Webserv/1.0");
-	
+}
+
+Response::Response(int status_code){
+	setStatusCode(status_code);
+	_HEAD = "";
+	_ResponsePacket = "";
+	_Body = "<h1>" + http_status[status_code] + "</h1>";
+	setMetadata("SERVER", "Webserv/1.0");
 }
 
 Response::~Response(){

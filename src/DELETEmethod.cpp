@@ -1,35 +1,48 @@
-#include <iostream>
-#include "Response.hpp"
+#include "../includes/Response.hpp"
+#include "../includes/webserver.hpp"
 
-# define STAT_FAIL 1
-# define STAT_SUCCESS 0
-
-static int	deletePath(const std::string &fullPath){
-	std::string	command;
-
-	command = "/bin/rm -rf " + fullPath;
-	if (system(command.c_str()) == -1)
-		return (STAT_FAIL);
-	return (STAT_SUCCESS);
-}
-
-static int	deleteFile(const std::string &fullPath){
-	if (remove(fullPath.c_str()) == -1)
-		return (STAT_FAIL);
-	return (STAT_SUCCESS);
-}
-
-static bool	isDirectory(const std::string &fullPath){
-	struct stat	sb;
-
-	if (stat(fullPath.c_str(), &sb) == -1)
+bool is_dir(std::string Path){
+	struct stat Path_stat;
+	if (stat(Path.c_str(), &Path_stat) == -1)
 		return (false);
-	if (S_ISDIR(sb.st_mode))
+	if (Path_stat.st_mode & S_IFDIR)
 		return (true);
 	return (false);
+
 }
 
-static bool	isExist(const std::string &fullPath){
+int delete_dir(std::string filePath) {
+	DIR *dir = opendir(filePath.c_str());
+	struct dirent *dir_elems;
+	std::string element;
+
+	if (dir == NULL)
+		return (-1);
+	while ((dir_elems = readdir(dir)) != NULL){
+		std::string elem = std::string(dir_elems->d_name);
+		if (elem == "." || elem == "..")
+			continue;
+		element = filePath + "/" + elem;
+		if (is_dir(element) == true){
+			if(delete_dir(element) == -1){
+				closedir(dir);
+				return (-1);
+			}
+		} else {
+			if (remove(element.c_str()) == -1){
+				closedir(dir);
+				return (-1);
+			}
+		}
+	}
+	closedir(dir);
+	if (rmdir(filePath.c_str()) == -1){
+		return (-1);
+	}
+	return (0);
+}
+
+bool	isExist(const std::string &fullPath){
 	struct stat	sb;
 
 	if (stat(fullPath.c_str(), &sb) == -1)
@@ -37,52 +50,30 @@ static bool	isExist(const std::string &fullPath){
 	return (true);
 }
 
-bool	DELETEmethod(Response &Packet){
-	std::string	RequestPath;
+void	Response::DELETE(){
+	std::string 	rootPath;
 	std::string	FilePath;
-	std::string	tmp;
 
-	FilePath = Packet.getRequest()->getMetadata("Path");
+	rootPath = search_val_table(_RequestPacket->getConfig(), "root_dir");
+	FilePath = rootPath + _RequestPacket->getUri();
+
 	if (isExist(FilePath) == false){
-		Packet.setStatusCode(404);
-		return (true);
+		setStatusCode(404);
+		return;
 	}
-	if (isDirectory(FilePath)){
-		FilePath += "/";
-		if (FilePath[FilePath.size() - 1] != '/'){
-			Packet.setStatusCode(409);
-			return (true);
-		}
-		// if (CGI){
-		// 	//implement CGI for delete here !! and return
-		// }
-		// if (deletePath(FilePath) == STAT_SUCCESS && rmdir(FilePath.c_str()) == STAT_SUCCESS){
-		// 	Packet.setStatusCode(204);
-		// 	return (true);
-		// }
+	if (is_dir(FilePath) == true && FilePath.back() != '/'){
+		setStatusCode(409);
+		return;
+	}
+	logx.info("[DELETE] " + FilePath);
+	//CGI check [TODO] !
+	// still need to add some checking here for perms
+	if (delete_dir(FilePath) == -1){
+		if (errno == 1)
+			setStatusCode(403);
+		else
+			setStatusCode(404);
 	}
 	else
-	{
-		// if (CGI){
-		// 	//implement CGI for delete here !! and return
-		// 		}
-		// if (deleteFile(FilePath) == STAT_SUCCESS && remove(FilePath.c_str()) == STAT_SUCCESS){
-		// 	Packet.setStatusCode(204);
-		// 	return (true);
-		// }
-	}
-	Packet.setStatusCode(500);
-	return (true);
-}
-
-int	main(){
-	Response	Packet;
-	Request		Request;
-
-	Request.setMethod("DELETE");
-	Request.setMetadata("Path", "hh");
-	Packet.setRequest(Request);
-	DELETEmethod(Packet);
-	std::cout << Packet.getStatusCode() << std::endl;
-	return 0;
+		setStatusCode(204);
 }

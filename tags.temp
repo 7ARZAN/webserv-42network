@@ -199,14 +199,11 @@ correct_Format	src/RequestParsing.cpp	/^std::string	correct_Format(const std::st
 creating a socket	notes.md	/^# creating a socket$/;"	c
 data_chunk	includes/multipart.hpp	/^typedef struct data_chunk{$/;"	s
 data_chunk	includes/multipart.hpp	/^}data_chunk;$/;"	t	typeref:struct:data_chunk
-debug	src/log.cpp	/^void ws_log::debug(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
 delete_dir	src/DELETEmethod.cpp	/^int delete_dir(std::string filepath) {$/;"	f	typeref:typename:int
 delivery	includes/connection.hpp	/^	std::string	delivery;$/;"	m	struct:ws_delivery	typeref:typename:std::string
-detect_log_level	src/log.cpp	/^LOG_LEVEL ws_log::detect_log_level(std::string &msg){$/;"	f	class:ws_log	typeref:typename:LOG_LEVEL
 dirlist	src/main.cpp	/^bool					dirlist = false;$/;"	v	typeref:typename:bool
 dirlist	tests/default.conf	/^dirlist = "true"$/;"	k
 domains?	notes.md	/^### domains?$/;"	S	section:it all starts with a socket""communication domains
-error	src/log.cpp	/^void ws_log::error(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
 expand_escaped	lib/libconfpp/src/parse.cpp	/^char expand_escaped(char escape_seq){$/;"	f	typeref:typename:char
 extract_string	lib/libconfpp/src/parse.cpp	/^std::string extract_string (std::string base_string, std::string delims, int *start){$/;"	f	typeref:typename:std::string
 fclean	Makefile	/^fclean : clean$/;"	t
@@ -227,7 +224,6 @@ get_chunks	src/multipart.cpp	/^std::vector<data_chunk> multipart::get_chunks(){$
 handleResponse	src/Response.cpp	/^void	Response::handleResponse(){$/;"	f	class:Response	typeref:typename:void
 hello	lib/libconfpp/tests/lib.conf	/^hello = okeny?$/;"	k
 http_status	src/main.cpp	/^std::map<int, std::string>		http_status;$/;"	v	typeref:typename:std::map<int,std::string>
-info	src/log.cpp	/^void ws_log::info(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
 init_socket	src/monitor.cpp	/^void	init_socket(ws_port &cport, std::string port){$/;"	f	typeref:typename:void
 isExist	src/DELETEmethod.cpp	/^bool	isExist(const std::string &fullPath){$/;"	f	typeref:typename:bool
 is_dir	src/DELETEmethod.cpp	/^bool is_dir(std::string path){$/;"	f	typeref:typename:bool
@@ -266,7 +262,6 @@ nport	includes/connection.hpp	/^	int				nport;				\/\/ port number$/;"	m	struct:
 ohmysplit	src/RequestParsing.cpp	/^std::vector<std::string> ohmysplit(const std::string &str, const std::string &sep)$/;"	f	typeref:typename:std::vector<std::string>
 operator =	lib/libconfpp/src/config.cpp	/^ws_config &ws_config::operator=(ws_config x){$/;"	f	class:ws_config	typeref:typename:ws_config &
 operator =	src/connection.cpp	/^ws_connections &ws_connections::operator=(ws_connections &x){$/;"	f	class:ws_connections	typeref:typename:ws_connections &
-operator =	src/log.cpp	/^ws_log& ws_log::operator=(ws_log x){$/;"	f	class:ws_log	typeref:typename:ws_log &
 operator []	lib/libconfpp/src/config.cpp	/^ws_config_table *ws_config::operator[](int index){$/;"	f	class:ws_config	typeref:typename:ws_config_table *
 pack_request	src/connection.cpp	/^bool ws_connections::pack_request(ws_delivery *delivery, ws_delivery *response, int nport){$/;"	f	class:ws_connections	typeref:typename:bool
 parseCookies	src/RequestParsing.cpp	/^bool	Request::parseCookies(){$/;"	f	class:Request	typeref:typename:bool
@@ -321,7 +316,6 @@ setRequest	src/Response.cpp	/^void	Response::setRequest(Request &request){$/;"	f
 setStatusCode	src/Response.cpp	/^bool	Response::setStatusCode(int code){$/;"	f	class:Response	typeref:typename:bool
 setUri	src/RequestParsing.cpp	/^void	Request::setUri(const std::string &uri){$/;"	f	class:Request	typeref:typename:void
 setVersion	src/RequestParsing.cpp	/^void	Request::setVersion(const std::string &version){$/;"	f	class:Request	typeref:typename:void
-set_log_level	src/log.cpp	/^void ws_log::set_log_level(LOG_LEVEL level){$/;"	f	class:ws_log	typeref:typename:void
 setboundary	src/multipart.cpp	/^void multipart::setboundary(std::string boundary){$/;"	f	class:multipart	typeref:typename:void
 setup_socket	src/monitor.cpp	/^ws_port ws_connections::setup_socket(ws_config &config, int table_idx){$/;"	f	class:ws_connections	typeref:typename:ws_port
 size	lib/libconfpp/src/config.cpp	/^int ws_config::size(){$/;"	f	class:ws_config	typeref:typename:int
@@ -338,7 +332,6 @@ test	lib/libconfpp/Makefile	/^test : re $/;"	t
 upload_dir	tests/default.conf	/^upload_dir = "\/home\/lmongol\/Projects\/wibsirv\/tests\/uploads"$/;"	k	section:media_server
 upload_dir	tests/default.conf	/^upload_dir = "\/tmp"$/;"	k	section:main_server
 val	lib/libconfpp/includes/config.h	/^	std::string	val;$/;"	m	struct:ws_config_container	typeref:typename:std::string
-warn	src/log.cpp	/^void ws_log::warn(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
 webserver	README.md	/^# webserver$/;"	c
 whoami	lib/libconfpp/tests/lib.conf	/^whoami               =            "call it off"$/;"	k
 whoami	lib/libconfpp/tests/lib.conf	/^whoami = "dont fucking call it off"$/;"	k
@@ -357,7 +350,6 @@ ws_delivery	includes/connection.hpp	/^typedef struct ws_delivery {$/;"	s
 ws_delivery	includes/connection.hpp	/^} ws_delivery;$/;"	t	typeref:struct:ws_delivery
 ws_log	includes/log.hpp	/^		ws_log(){};$/;"	f	class:ws_log
 ws_log	includes/log.hpp	/^class ws_log{$/;"	c
-ws_log	src/log.cpp	/^ws_log::ws_log(std::string log_path, std::string level){$/;"	f	class:ws_log
 ws_port	includes/connection.hpp	/^typedef struct ws_port{$/;"	s
 ws_port	includes/connection.hpp	/^}ws_port;$/;"	t	typeref:struct:ws_port
 ws_status	includes/connection.hpp	/^typedef enum ws_status {$/;"	g
@@ -365,4 +357,3 @@ ws_status	includes/connection.hpp	/^} ws_status;$/;"	t	typeref:enum:ws_status
 ~Request	src/RequestParsing.cpp	/^Request::~Request(){$/;"	f	class:Request
 ~Response	src/Response.cpp	/^Response::~Response(){$/;"	f	class:Response
 ~ws_config	lib/libconfpp/src/config.cpp	/^ws_config::~ws_config(){$/;"	f	class:ws_config
-~ws_log	src/log.cpp	/^ws_log::~ws_log(){$/;"	f	class:ws_log

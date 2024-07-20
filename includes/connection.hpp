@@ -13,16 +13,23 @@
 #include "../lib/libconfpp/includes/libconfpp.h"
 
 #define CONN_TIMEOUT 10			// in seconds
+#define EVENT_TIMEOUT 100
 
 typedef enum ws_status {
 	READY,
-	PENDING
+	PENDING,
+	READING_BODY,
+	BODY_READ
 } ws_status;
+
+class Request;
 
 typedef struct ws_delivery {
 	std::string	delivery;
 	std::string	buffer;
 	ws_status	status;
+	ssize_t		left; 
+	Request		*req;
 } ws_delivery;
 
 typedef struct ws_port{
@@ -40,16 +47,18 @@ typedef struct ws_port{
 class ws_connections{
 	private :
 		std::vector<ws_port>	ports;
+		ws_config		config;
 
 		ws_port setup_socket(ws_config &config, int table_idx);
 		void monitor_connections();
 		void close_connection(unsigned int idx, unsigned int port_idx);
-		bool pack_request(ws_delivery *delivery, ws_delivery *response, int sock_fd);
+		bool pack_request(ws_delivery *delivery, ws_delivery *response, int nport);
 	public :
 		ws_connections(ws_config &config);
-		ws_connections();
+		ws_connections(){};
 		ws_connections& operator=(ws_connections &x);
 		void accept_connections();
+		void parse_and_serve(ws_delivery *request, ws_delivery *response, int nport);
 };
 
 #endif

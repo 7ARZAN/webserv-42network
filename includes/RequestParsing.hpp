@@ -6,22 +6,29 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:50 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/18 13:09:04 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/20 10:21:48 by lmongol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REQUESTPARSING_HPP
 # define REQUESTPARSING_HPP
 
-# include <iostream>
-# include <string>
-# include <map>
-# include "tools.hpp"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <map>
+#include <climits>
+#include "../lib/libconfpp/includes/config.h"
+
+struct ws_delivery;
 
 class	Request
 {
 	private:
-		std::string	_RequestPacket;
+		ws_config_table	*config;
+		ws_delivery	*request;
+		ws_delivery	*response;
 		std::string	_Method;
 		std::string	_Uri;
 		std::string	_Version;
@@ -30,11 +37,10 @@ class	Request
 		std::map<std::string, std::string>	_cookies;
 
 	public:
-		Request();
+		Request(ws_delivery *request, ws_delivery *response, ws_config_table *config);
 		~Request();
 
-		void	appendRequestPacket(const std::string &requestPacket);
-
+		// basically setters
 		void	setMethod(const std::string &method);
 		void	setUri(const std::string &uri);
 		void	setBody(const std::string &body);
@@ -47,11 +53,16 @@ class	Request
 		bool	parseCookies();
 
 		std::string	getMethod() const;
+		ws_config_table	*getConfig();
 		std::string	getUri() const;
-		std::string	getBody() const;
+		std::string	&getBody();
 		std::string	getVersion() const;
 		std::string	getMetadata(const std::string &key) const;
 		std::map<std::string, std::string>	getCookies() const;
 };
+
+
+std::vector<std::string> ohmysplit(const std::string &str, const std::string &sep);
+// static std::string	trim(std::string str, std::string chars);
 
 #endif

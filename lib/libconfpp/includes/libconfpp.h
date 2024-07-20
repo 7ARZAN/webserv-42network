@@ -13,6 +13,5 @@
 
 extern int cline;
 
-#define DEBUG true
 
 #endif
