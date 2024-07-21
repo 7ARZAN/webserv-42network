@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:50 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/20 10:21:48 by lmongol          ###   ########.fr       */
+/*   Updated: 2024/07/21 06:49:50 by tarzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class	Request
 		std::string	_Uri;
 		std::string	_Version;
 		std::string	_Body;
+		std::string	query;
 		std::map<std::string, std::string>	_Metadata;
 		std::map<std::string, std::string>	_cookies;
 
@@ -52,6 +53,7 @@ class	Request
 		bool	parseMetadata(std::stringstream &header);
 		bool	parseCookies();
 
+		std::string	getquery();
 		std::string	getMethod() const;
 		ws_config_table	*getConfig();
 		std::string	getUri() const;

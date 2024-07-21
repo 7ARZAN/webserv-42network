@@ -6,13 +6,14 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 01:51:39 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/20 05:13:10 by lmongol          ###   ########.fr       */
+/*   Updated: 2024/07/21 10:40:35 by lmongol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/RequestParsing.hpp"
 #include "../includes/Response.hpp"
 #include "../includes/webserver.hpp"
+#include "../includes/connection.hpp"
 
 std::vector<std::string> ohmysplit(const std::string &str, const std::string &sep)
 {
@@ -74,9 +75,14 @@ void	Request::setCookies(const std::string &key, const std::string &value){
 	_cookies[key] = value;
 }
 
+std::string Request::getquery(){
+	return (this->query);
+}
+
 bool	Request::parseRequest(){
 	std::stringstream	header;
 	std::string	line;
+	std::vector<std::string>	query;
 	std::vector<std::string> list;
 	ssize_t		body_size;
 
@@ -94,7 +100,16 @@ bool	Request::parseRequest(){
 	setMethod(correct_Format(list[0]));
 	if (_Method != "POST" && _Method != "GET" && _Method != "DELETE")
 		throw (Response(501));
-	setUri(correct_Format(list[1]));
+	if (_Method == "GET" && list[1].find("?") != std::string::npos){
+		query = ohmysplit(list[1], "?");
+		if (query.size() != 2)
+			throw (Response(400));
+		setUri(correct_Format(query[0]));
+		this->query = query[1];
+	}
+	else{
+		setUri(correct_Format(list[1]));
+	}
 	if (_Uri.size() > PATH_MAX)
 		throw (Response(415));
 	setVersion(correct_Format(list[2]));

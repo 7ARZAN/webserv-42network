@@ -22,8 +22,8 @@ class multipart{
 		void parse_attributes(std::string &chunk);
 		void parse_mbody(std::string mbody);
 
-		void setBoundary(std::string boundary);
-		std::vector<data_chunk> getChunks();
+		void setboundary(std::string boundary);
+		std::vector<data_chunk> get_chunks();
 };
 
 #endif

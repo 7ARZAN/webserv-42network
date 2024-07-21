@@ -14,6 +14,7 @@
 
 #define CONN_TIMEOUT 10			// in seconds
 #define EVENT_TIMEOUT 100
+#define BUFF_SIZE 1024;
 
 typedef enum ws_status {
 	READY,
@@ -29,6 +30,7 @@ typedef struct ws_delivery {
 	std::string	buffer;
 	ws_status	status;
 	ssize_t		left; 
+	size_t		readbuff;
 	Request		*req;
 } ws_delivery;
 

@@ -33,9 +33,7 @@ void ws_log::info(std::string msg){
 		std::cout << "[" << BLUE << "*"  << DEFAULT << "] - " ;
 		std::cout << msg << std::endl;
 		if (log_to_file == true){
-			log_file << msg;
-			log_file << "\n";
-			log_file.flush();
+			log_file << msg << "\n" << std::flush;
 		}
 	}
 }
@@ -44,9 +42,7 @@ void ws_log::error(std::string msg){
 		std::cout << "[" << RED << "ERROR"  << DEFAULT << "] - " ;
 		std::cout << msg << std::endl;
 		if (log_to_file == true){
-			log_file << msg;
-			log_file << "\n";
-			log_file.flush();
+			log_file << msg << "\n" << std::flush;
 		}
 	}
 }
@@ -55,9 +51,7 @@ void ws_log::debug(std::string msg){
 		std::cout << "[" << BLUE << "*"  << DEFAULT << "] - " ;
 		std::cout << msg << std::endl;
 		if (log_to_file == true){
-			log_file << msg;
-			log_file << "\n";
-			log_file.flush();
+			log_file << msg << "\n" << std::flush;
 		}
 	}
 }
@@ -66,9 +60,7 @@ void ws_log::warn(std::string msg){
 		std::cout << "[" << YELLOW << "!"  << DEFAULT << "] - " ;
 		std::cout << msg << std::endl;
 		if (log_to_file == true){
-			log_file << msg;
-			log_file << "\n";
-			log_file.flush();
+			log_file << msg << "\n" << std::flush;
 		}
 	}
 }

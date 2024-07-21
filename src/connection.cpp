@@ -66,14 +66,14 @@ void ws_connections::parse_and_serve(ws_delivery *request, ws_delivery *response
 			request->req->parseRequest();
 		}
 	}catch (Response &resp){
-		response->delivery = resp.RenderResponse();
+		response->delivery = resp.render_response();
 		response->status = READY;
 		return;
 	}
 	if (request->status == READY){
 		Response resp(request->req);
 		resp.handleResponse();
-		response->delivery = resp.RenderResponse();
+		response->delivery = resp.render_response();
 		response->status = READY;
 	}
 }
@@ -104,31 +104,34 @@ bool ws_connections::pack_request(ws_delivery *delivery, ws_delivery *response, 
 
 void ws_connections::monitor_connections(){
 	// listening to all the sockets
-	char buffer[1025];
-	int i = -1;
+	char	*buffer;
+	size_t	data_read;
+	int	i = -1;
 	while (++i < (int) ports.size()){
 		int j = -1;
 		poll(&ports[i].conn_fds[0], ports[i].conn_fds.size(), EVENT_TIMEOUT);
 		while (++j < (int) ports[i].conn_fds.size()){
-			bzero(buffer, 1025);
 			// basically timout the user
 			if ((time(0) - ports[i].last_interaction[j] >  ports[i].req_timeout)
 				|| ports[i].conn_fds[j].revents & POLLHUP ){
 				Response resp(504);
-				ports[i].responses[j].delivery = resp.RenderResponse();
+				ports[i].responses[j].delivery = resp.render_response();
 				ports[i].responses[j].status = READY;
 				close_connection(i, j--);
 			}
 			else if (ports[i].conn_fds[j].revents & POLLIN){
-				if (read(ports[i].conn_fds[j].fd, buffer, 1024) < 1){
+				buffer = new char[ports[i].requests[j].readbuff + 2];
+				if ((data_read = read(ports[i].conn_fds[j].fd, buffer,
+						ports[i].requests[j].readbuff)) < 1){
 					close_connection(i, j--);
 				}else {
-					ports[i].requests[j].buffer += std::string(buffer);
+					ports[i].requests[j].buffer.append(buffer, data_read);
 					if (ports[i].requests[j].left > 0)
-						ports[i].requests[j].left -= strlen(buffer);
+						ports[i].requests[j].left -= data_read;
 					ports[i].last_interaction[j] = time(NULL);
 					pack_request(&ports[i].requests[j], &ports[i].responses[j], ports[i].nport);
 				}
+				delete[] buffer;
 			} else if (ports[i].conn_fds[j].revents & POLLOUT 
 				&& ports[i].responses[j].status == READY){
 				write(ports[i].conn_fds[j].fd,
@@ -162,6 +165,7 @@ void ws_connections::accept_connections(){
 				delivery.status = PENDING;
 				delivery.left = 0;
 				delivery.req = NULL;
+				delivery.readbuff = BUFF_SIZE;
 				// setting socket metadata
 				ports[i].conn_fds.push_back(tmpcont);
 				ports[i].requests.push_back(delivery);

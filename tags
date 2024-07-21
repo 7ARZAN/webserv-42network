@@ -12,16 +12,6 @@
 !_TAG_FIELD_DESCRIPTION!Python	nameref	/the original name for the tag/
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_KIND_DESCRIPTION!C	d,macro	/macro definitions/
-!_TAG_KIND_DESCRIPTION!C	e,enumerator	/enumerators (values inside an enumeration)/
-!_TAG_KIND_DESCRIPTION!C	f,function	/function definitions/
-!_TAG_KIND_DESCRIPTION!C	g,enum	/enumeration names/
-!_TAG_KIND_DESCRIPTION!C	h,header	/included header files/
-!_TAG_KIND_DESCRIPTION!C	m,member	/struct, and union members/
-!_TAG_KIND_DESCRIPTION!C	s,struct	/structure names/
-!_TAG_KIND_DESCRIPTION!C	t,typedef	/typedefs/
-!_TAG_KIND_DESCRIPTION!C	u,union	/union names/
-!_TAG_KIND_DESCRIPTION!C	v,variable	/variable definitions/
 !_TAG_KIND_DESCRIPTION!C++	c,class	/classes/
 !_TAG_KIND_DESCRIPTION!C++	d,macro	/macro definitions/
 !_TAG_KIND_DESCRIPTION!C++	e,enumerator	/enumerators (values inside an enumeration)/
@@ -34,6 +24,9 @@
 !_TAG_KIND_DESCRIPTION!C++	t,typedef	/typedefs/
 !_TAG_KIND_DESCRIPTION!C++	u,union	/union names/
 !_TAG_KIND_DESCRIPTION!C++	v,variable	/variable definitions/
+!_TAG_KIND_DESCRIPTION!CSS	c,class	/classes/
+!_TAG_KIND_DESCRIPTION!CSS	i,id	/identities/
+!_TAG_KIND_DESCRIPTION!CSS	s,selector	/selectors/
 !_TAG_KIND_DESCRIPTION!HTML	C,stylesheet	/stylesheets/
 !_TAG_KIND_DESCRIPTION!HTML	I,id	/identifiers/
 !_TAG_KIND_DESCRIPTION!HTML	J,script	/scripts/
@@ -45,6 +38,16 @@
 !_TAG_KIND_DESCRIPTION!HTML	t,title	/titles/
 !_TAG_KIND_DESCRIPTION!Iniconf	k,key	/keys/
 !_TAG_KIND_DESCRIPTION!Iniconf	s,section	/sections/
+!_TAG_KIND_DESCRIPTION!JavaScript	C,constant	/constants/
+!_TAG_KIND_DESCRIPTION!JavaScript	G,getter	/getters/
+!_TAG_KIND_DESCRIPTION!JavaScript	M,field	/fields/
+!_TAG_KIND_DESCRIPTION!JavaScript	S,setter	/setters/
+!_TAG_KIND_DESCRIPTION!JavaScript	c,class	/classes/
+!_TAG_KIND_DESCRIPTION!JavaScript	f,function	/functions/
+!_TAG_KIND_DESCRIPTION!JavaScript	g,generator	/generators/
+!_TAG_KIND_DESCRIPTION!JavaScript	m,method	/methods/
+!_TAG_KIND_DESCRIPTION!JavaScript	p,property	/properties/
+!_TAG_KIND_DESCRIPTION!JavaScript	v,variable	/global variables/
 !_TAG_KIND_DESCRIPTION!Make	I,makefile	/makefiles/
 !_TAG_KIND_DESCRIPTION!Make	m,macro	/macros/
 !_TAG_KIND_DESCRIPTION!Make	t,target	/targets/
@@ -56,6 +59,14 @@
 !_TAG_KIND_DESCRIPTION!Markdown	s,section	/sections/
 !_TAG_KIND_DESCRIPTION!Markdown	t,subsubsection	/level 3 sections/
 !_TAG_KIND_DESCRIPTION!Markdown	u,l5subsection	/level 5 sections/
+!_TAG_KIND_DESCRIPTION!PHP	a,alias	/aliases/
+!_TAG_KIND_DESCRIPTION!PHP	c,class	/classes/
+!_TAG_KIND_DESCRIPTION!PHP	d,define	/constant definitions/
+!_TAG_KIND_DESCRIPTION!PHP	f,function	/functions/
+!_TAG_KIND_DESCRIPTION!PHP	i,interface	/interfaces/
+!_TAG_KIND_DESCRIPTION!PHP	n,namespace	/namespaces/
+!_TAG_KIND_DESCRIPTION!PHP	t,trait	/traits/
+!_TAG_KIND_DESCRIPTION!PHP	v,variable	/variables/
 !_TAG_KIND_DESCRIPTION!Python	I,namespace	/name referring a module defined in other file/
 !_TAG_KIND_DESCRIPTION!Python	Y,unknown	/name referring a class\/variable\/function\/module defined in other module/
 !_TAG_KIND_DESCRIPTION!Python	c,class	/classes/
@@ -67,12 +78,14 @@
 !_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
 !_TAG_OUTPUT_VERSION	0.0	/current.age/
-!_TAG_PARSER_VERSION!C	1.1	/current.age/
 !_TAG_PARSER_VERSION!C++	1.1	/current.age/
+!_TAG_PARSER_VERSION!CSS	0.0	/current.age/
 !_TAG_PARSER_VERSION!HTML	0.0	/current.age/
 !_TAG_PARSER_VERSION!Iniconf	0.0	/current.age/
+!_TAG_PARSER_VERSION!JavaScript	1.1	/current.age/
 !_TAG_PARSER_VERSION!Make	0.0	/current.age/
 !_TAG_PARSER_VERSION!Markdown	1.1	/current.age/
+!_TAG_PARSER_VERSION!PHP	0.0	/current.age/
 !_TAG_PARSER_VERSION!Python	0.0	/current.age/
 !_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
 !_TAG_PROC_CWD	/home/lmongol/Projects/wibsirv/	//
@@ -80,17 +93,13 @@
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	6.1.0	/v6.1.0/
-!_TAG_ROLE_DESCRIPTION!C!function	foreigndecl	/declared in foreign languages/
-!_TAG_ROLE_DESCRIPTION!C!header	local	/local header/
-!_TAG_ROLE_DESCRIPTION!C!header	system	/system header/
-!_TAG_ROLE_DESCRIPTION!C!macro	undef	/undefined/
-!_TAG_ROLE_DESCRIPTION!C!struct	foreigndecl	/declared in foreign languages/
 !_TAG_ROLE_DESCRIPTION!C++!header	local	/local header/
 !_TAG_ROLE_DESCRIPTION!C++!header	system	/system header/
 !_TAG_ROLE_DESCRIPTION!C++!macro	undef	/undefined/
 !_TAG_ROLE_DESCRIPTION!HTML!class	attribute	/assigned as attributes/
 !_TAG_ROLE_DESCRIPTION!HTML!script	extFile	/referenced as external files/
 !_TAG_ROLE_DESCRIPTION!HTML!stylesheet	extFile	/referenced as external files/
+!_TAG_ROLE_DESCRIPTION!JavaScript!function	foreigndecl	/declared in foreign languages/
 !_TAG_ROLE_DESCRIPTION!Make!makefile	included	/included/
 !_TAG_ROLE_DESCRIPTION!Make!makefile	optional	/optionally included/
 !_TAG_ROLE_DESCRIPTION!Python!module	imported	/imported modules/
@@ -98,26 +107,91 @@
 !_TAG_ROLE_DESCRIPTION!Python!module	namespace	/namespace from where classes\/variables\/functions are imported/
 !_TAG_ROLE_DESCRIPTION!Python!unknown	imported	/imported from the other module/
 !_TAG_ROLE_DESCRIPTION!Python!unknown	indirectlyImported	/classes\/variables\/functions\/modules imported in alternative name/
+#app	tests/star-battle/css/style.css	/^#app {$/;"	i
+#canvas	tests/star-battle/css/style.css	/^#canvas {$/;"	i
+#container	tests/star-battle/css/style.css	/^#container,$/;"	i
+#container>div	tests/star-battle/css/style.css	/^#container>div {$/;"	i
+#container>div.action	tests/star-battle/css/style.css	/^#container>div.action {$/;"	c
+#logo	tests/star-battle/css/style.css	/^#logo {$/;"	i
+#logo img	tests/star-battle/css/style.css	/^#logo img {$/;"	s
+#logo.play-status img	tests/star-battle/css/style.css	/^#logo.play-status img {$/;"	s
+#over .message	tests/star-battle/css/style.css	/^#over .message {$/;"	c
+#over .message img	tests/star-battle/css/style.css	/^#over .message img {$/;"	s
+#over .message span	tests/star-battle/css/style.css	/^#over .message span {$/;"	s
+#over .message span:nth-last-child(1)	tests/star-battle/css/style.css	/^#over .message span:nth-last-child(1) {$/;"	s
+#over input	tests/star-battle/css/style.css	/^#over input {$/;"	s
+#play	tests/star-battle/css/style.css	/^#play {$/;"	i
+#start-btn p:nth-child(2)	tests/star-battle/css/style.css	/^#start-btn p:nth-child(2) {$/;"	s
+#start-btn:disabled p:nth-child(1)	tests/star-battle/css/style.css	/^#start-btn:disabled p:nth-child(1) {$/;"	s
+#start-btn:disabled p:nth-child(2)	tests/star-battle/css/style.css	/^#start-btn:disabled p:nth-child(2) {$/;"	s
+$	tests/star-battle/js/utils/utils.js	/^const $ = elem => document.querySelector(elem);$/;"	f
 $(LIBCONFPP)	Makefile	/^$(LIBCONFPP):$/;"	t
 $(NAME)	Makefile	/^$(NAME): $(OBJ) $(LIBCONFPP) $(INCLUDES)$/;"	t
 $(NAME)	lib/libconfpp/Makefile	/^$(NAME): $(OBJ) $/;"	t
+$s	tests/star-battle/js/utils/utils.js	/^const $s = elem => document.querySelectorAll(elem);$/;"	f
+*	tests/star-battle/css/common.css	/^* {$/;"	s
+.absolute	tests/star-battle/css/common.css	/^.absolute{$/;"	c
+.btn	tests/star-battle/css/common.css	/^.btn {$/;"	c
+.btn::after	tests/star-battle/css/common.css	/^.btn::after{$/;"	c
+.btn:active	tests/star-battle/css/common.css	/^.btn:active{$/;"	c
+.btn:active::after	tests/star-battle/css/common.css	/^.btn:active::after{$/;"	c
+.btn:disabled	tests/star-battle/css/common.css	/^.btn:disabled{$/;"	c
+.column	tests/star-battle/css/common.css	/^.column{$/;"	c
+.content	tests/star-battle/css/style.css	/^.content {$/;"	c
+.content .header	tests/star-battle/css/style.css	/^.content .header {$/;"	c
+.content .header .option img	tests/star-battle/css/style.css	/^.content .header .option img {$/;"	s
+.content .header .option img:nth-child(2)	tests/star-battle/css/style.css	/^.content .header .option img:nth-child(2) {$/;"	s
+.content .header .option li.active img:nth-child(1)	tests/star-battle/css/style.css	/^.content .header .option li.active img:nth-child(1) {$/;"	s
+.content .header .option li.active img:nth-child(2)	tests/star-battle/css/style.css	/^.content .header .option li.active img:nth-child(2) {$/;"	s
+.content .header .option li:active	tests/star-battle/css/style.css	/^.content .header .option li:active {$/;"	s
+.content .header li img	tests/star-battle/css/style.css	/^.content .header li img {$/;"	s
+.content .header ul	tests/star-battle/css/style.css	/^.content .header ul {$/;"	s
+.content .header ul	tests/star-battle/css/style.css	/^.content .header ul,$/;"	s
+.content .header ul li	tests/star-battle/css/style.css	/^.content .header ul li {$/;"	s
+.message	tests/star-battle/css/common.css	/^.message {$/;"	c
+.pre	tests/star-battle/css/common.css	/^.pre{$/;"	c
+.scroll tbody	tests/star-battle/css/common.css	/^.scroll tbody {$/;"	s
+.scroll tbody::-webkit-scrollbar	tests/star-battle/css/common.css	/^.scroll tbody::-webkit-scrollbar {$/;"	s
+.scroll tbody::-webkit-scrollbar	tests/star-battle/css/common.css	/^.scroll tbody::-webkit-scrollbar{$/;"	s
+.scroll tbody::-webkit-scrollbar-thumb	tests/star-battle/css/common.css	/^.scroll tbody::-webkit-scrollbar-thumb {$/;"	s
+.scroll tbody::-webkit-scrollbar-track	tests/star-battle/css/common.css	/^.scroll tbody::-webkit-scrollbar-track {$/;"	s
+.scroll thead	tests/star-battle/css/common.css	/^.scroll thead {$/;"	s
+.scroll thead	tests/star-battle/css/common.css	/^.scroll thead,$/;"	s
+Animation	tests/star-battle/js/class/animation.js	/^class Animation{$/;"	c
+Author	tests/star-battle/README.md	/^## Author$/;"	s
 BLUE	includes/log.hpp	/^#define BLUE /;"	d
 BODY_READ	includes/connection.hpp	/^	BODY_READ$/;"	e	enum:ws_status
-BUFFER_SIZE	tests/nc.c	/^#define BUFFER_SIZE /;"	d	file:
+BUFF_SIZE	includes/connection.hpp	/^#define BUFF_SIZE /;"	d
+Bullet	tests/star-battle/js/class/bullet.js	/^class Bullet extends Element{$/;"	c
 CC	Makefile	/^CC = g++$/;"	m
 CC	lib/libconfpp/Makefile	/^CC = g++$/;"	m
-CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -Wformat=2 -flto -ffast-math -pedantic -ggdb$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -Wformat=2 -ffast-math -pedantic -ggdb -g$/;"	m
 CFLAGS	lib/libconfpp/Makefile	/^CFLAGS = -Wall -Wextra -Werror -Wformat=2 -flto -ffast-math -pedantic -O3 $/;"	m
+CGI	default.conf	/^CGI=""$/;"	k	section:media_server
+CGI	includes/handleCGI.hpp	/^	CGI$/;"	e	enum:CGI_TYPE
+CGIMethod	src/handleCGI.cpp	/^int	handleCGI::CGIMethod(const std::string &Method){$/;"	f	class:handleCGI	typeref:typename:int
+CGI_TYPE	includes/handleCGI.hpp	/^typedef enum CGI_TYPE{$/;"	g
+CGI_TYPE	includes/handleCGI.hpp	/^}CGI_TYPE;$/;"	t	typeref:enum:CGI_TYPE
 CONNECTION_HPP	includes/connection.hpp	/^#define CONNECTION_HPP$/;"	d
 CONN_TIMEOUT	includes/connection.hpp	/^#define CONN_TIMEOUT /;"	d
+Conclusion	tests/star-battle/README.md	/^## Conclusion$/;"	s
+Cooldown	tests/star-battle/js/class/cooldown.js	/^class Cooldown{$/;"	c
 DEBUG	includes/log.hpp	/^	DEBUG,$/;"	e	enum:LOG_LEVEL
 DEFAULT	includes/log.hpp	/^#define DEFAULT /;"	d
 DELETE	src/DELETEmethod.cpp	/^void	Response::DELETE(){$/;"	f	class:Response	typeref:typename:void
+Demo Preview	tests/star-battle/README.md	/^## Demo Preview$/;"	s
+Demo 预览	tests/star-battle/README-CN.md	/^## Demo 预览$/;"	s
 ERROR	includes/log.hpp	/^	ERROR,$/;"	e	enum:LOG_LEVEL
 EVENT_TIMEOUT	includes/connection.hpp	/^#define EVENT_TIMEOUT /;"	d
+Element	tests/star-battle/js/class/element.js	/^class Element{$/;"	c
+Enemy	tests/star-battle/js/class/enemy.js	/^class Enemy extends Plane{$/;"	c
 FUNCDEFS_H	lib/libconfpp/includes/funcdefs.h	/^#define FUNCDEFS_H$/;"	d
-FileReader	src/Response.cpp	/^bool	Response::FileReader(const std::string &path){$/;"	f	class:Response	typeref:typename:bool
+Friend	tests/star-battle/js/class/friend.js	/^class Friend extends Plane{$/;"	c
+Fuel	tests/star-battle/js/class/fuel.js	/^class Fuel extends Plane{$/;"	c
 GET	src/GETmethod.cpp	/^void	Response::GET(){$/;"	f	class:Response	typeref:typename:void
+Game	tests/star-battle/js/game.js	/^class Game {$/;"	c
+Game Rules	tests/star-battle/README.md	/^## Game Rules$/;"	s
+HANDLECGI_HPP	includes/handleCGI.hpp	/^# define HANDLECGI_HPP$/;"	d
 HTTP_CODES	includes/webserver.hpp	/^#define HTTP_CODES	/;"	d
 HTTP_MSG	includes/webserver.hpp	/^#define HTTP_MSG	/;"	d
 INCLUDES	Makefile	/^INCLUDES = lib\/libconfpp\/includes$/;"	m
@@ -129,19 +203,34 @@ LOG_LEVEL	includes/log.hpp	/^typedef enum LOG_LEVEL{$/;"	g
 LOG_LEVEL	includes/log.hpp	/^}LOG_LEVEL;$/;"	t	typeref:enum:LOG_LEVEL
 MIME	includes/webserver.hpp	/^#define MIME	/;"	d
 MULTIPART_HPP	includes/multipart.hpp	/^#define MULTIPART_HPP$/;"	d
+Meteorite	tests/star-battle/js/class/meteorite.js	/^class Meteorite extends Plane{$/;"	c
 NAME	lib/libconfpp/Makefile	/^NAME = libconfpp.a$/;"	m
-NONE	includes/log.hpp	/^	NONE,$/;"	e	enum:LOG_LEVEL
+NONE	includes/log.hpp	/^	NONE$/;"	e	enum:LOG_LEVEL
 OBJ	Makefile	/^OBJ = build\/main.o build\/connection.o build\/RequestParsing.o build\/log.o build\/monitor.o \\$/;"	m
 OBJ	lib/libconfpp/Makefile	/^OBJ = build\/parse.o build\/common.o build\/config.o build\/search.o$/;"	m
+Over	tests/star-battle/js/scenes/over.js	/^class Over extends Scene{$/;"	c
 PENDING	includes/connection.hpp	/^	PENDING,$/;"	e	enum:ws_status
+PHP	includes/handleCGI.hpp	/^	PHP,$/;"	e	enum:CGI_TYPE
+PHPCGI	default.conf	/^PHPCGI="\/sbin\/php"$/;"	k	section:media_server
+PL	includes/handleCGI.hpp	/^	PL,$/;"	e	enum:CGI_TYPE
+PLCGI	default.conf	/^PLCGI=""$/;"	k	section:media_server
 POST	src/POSTmethod.cpp	/^void	Response::POST(){$/;"	f	class:Response	typeref:typename:void
 POSTFILE	src/POSTmethod.cpp	/^void	Response::POSTFILE(std::string boundary){$/;"	f	class:Response	typeref:typename:void
+PY	includes/handleCGI.hpp	/^	PY,$/;"	e	enum:CGI_TYPE
+PYCGI	default.conf	/^PYCGI="\/sbin\/python3"$/;"	k	section:media_server
+Plane	tests/star-battle/js/class/plane.js	/^class Plane extends Element{ $/;"	c
+Play	tests/star-battle/js/scenes/play.js	/^class Play extends Scene {$/;"	c
+Player	tests/star-battle/js/class/player.js	/^class Player extends Plane{$/;"	c
 Please fill in the file-upload form below	tests/upload.html	/^	<h2>Please fill in the file-upload form below<\/h2>$/;"	i
+RB	includes/handleCGI.hpp	/^	RB,$/;"	e	enum:CGI_TYPE
+RBCGI	default.conf	/^RBCGI=""$/;"	k	section:media_server
 READING_BODY	includes/connection.hpp	/^	READING_BODY,$/;"	e	enum:ws_status
 READY	includes/connection.hpp	/^	READY,$/;"	e	enum:ws_status
 RED	includes/log.hpp	/^#define RED /;"	d
 REQUESTPARSING_HPP	includes/RequestParsing.hpp	/^# define REQUESTPARSING_HPP$/;"	d
 RESPONSE_HPP	includes/Response.hpp	/^# define RESPONSE_HPP$/;"	d
+RU	tests/star-battle/README-RU.md	/^# RU$/;"	c
+Rank	tests/star-battle/js/scenes/rank.js	/^class Rank extends Scene {$/;"	c
 Redirect	src/Response.cpp	/^bool	Response::Redirect(const std::string &uri, bool isPermanent){$/;"	f	class:Response	typeref:typename:bool
 Request	includes/RequestParsing.hpp	/^class	Request$/;"	c
 Request	src/RequestParsing.cpp	/^Request::Request(ws_delivery *request, ws_delivery *response, ws_config_table *table){$/;"	f	class:Request
@@ -151,9 +240,17 @@ Response	src/Response.cpp	/^Response::Response(int status_code){$/;"	f	class:Res
 SRC	Makefile	/^SRC = src\/main.cpp src\/connection.cpp src\/RequestParsing.cpp src\/log.cpp src\/monitor.cpp \\$/;"	m
 STAT_FAIL	includes/Response.hpp	/^# define STAT_FAIL /;"	d
 STAT_SUCCESS	includes/Response.hpp	/^# define STAT_SUCCESS /;"	d
+Scene	tests/star-battle/js/class/scene.js	/^class Scene{$/;"	c
+Star	tests/star-battle/js/class/star.js	/^class Star extends Element{$/;"	c
+Star Battle	tests/star-battle/index.html	/^    <title>Star Battle<\/title>$/;"	j
+Start	tests/star-battle/js/scenes/start.js	/^class Start extends Scene {$/;"	c
 TYPE	includes/webserver.hpp	/^#define TYPE /;"	d
 WARN	includes/log.hpp	/^	WARN,$/;"	e	enum:LOG_LEVEL
 WEBSERVER_HPP	includes/webserver.hpp	/^#define WEBSERVER_HPP$/;"	d
+What is curl used for?	tests/curl.html	/^<h2> What is curl used for? <\/h2>$/;"	i
+What is the latest curl?	tests/curl.html	/^<h2> What is the latest curl? <\/h2>$/;"	i
+Where is the code?	tests/curl.html	/^<h2> Where is the code? <\/h2>$/;"	i
+Who makes curl?	tests/curl.html	/^<h2> Who makes curl? <\/h2>$/;"	i
 YELLOW	includes/log.hpp	/^#define YELLOW /;"	d
 _Body	includes/RequestParsing.hpp	/^		std::string	_Body;$/;"	m	class:Request	typeref:typename:std::string
 _Body	includes/Response.hpp	/^		std::string	_Body;$/;"	m	class:Response	typeref:typename:std::string
@@ -169,105 +266,288 @@ _ResponsePacket	includes/Response.hpp	/^		std::string	_ResponsePacket;$/;"	m	cla
 _Uri	includes/RequestParsing.hpp	/^		std::string	_Uri;$/;"	m	class:Request	typeref:typename:std::string
 _Version	includes/RequestParsing.hpp	/^		std::string	_Version;$/;"	m	class:Request	typeref:typename:std::string
 _cookies	includes/RequestParsing.hpp	/^		std::map<std::string, std::string>	_cookies;$/;"	m	class:Request	typeref:typename:std::map<std::string,std::string>
+_deathing	tests/star-battle/js/class/element.js	/^    _deathing() {$/;"	m	class:Element
 _statusCode	includes/Response.hpp	/^		std::string	_statusCode;$/;"	m	class:Response	typeref:typename:std::string
+a	tests/star-battle/js/class/player.js	/^            'a': this.left,$/;"	p	variable:Player.event.keys
 accept_connections	src/connection.cpp	/^void ws_connections::accept_connections(){$/;"	f	class:ws_connections	typeref:typename:void
-accepting	notes.md	/^## accepting$/;"	s	chapter:binding the socket
+active	tests/star-battle/js/class/cooldown.js	/^    active(callback) {$/;"	m	class:Cooldown
+add	tests/star-battle/js/utils/utils.js	/^    const add = (key, obj) => {$/;"	f
+addData	tests/star-battle/js/scenes/rank.js	/^    addData() {$/;"	m	class:Rank
+age	tests/tarzan.py	/^age = form.getvalue('age')$/;"	v
 all	Makefile	/^all: build $(NAME)$/;"	t
 all	lib/libconfpp/Makefile	/^all: build $(NAME)$/;"	t
+allEnemys	tests/star-battle/js/scenes/play.js	/^        this.allEnemys = [];$/;"	p	method:Play.initData
+anonymousObject049acbdf0105	tests/star-battle/js/class/element.js	/^            this.animation = Object.assign({$/;"	v	method:Element.setup
+anonymousObject049acbdf0205	tests/star-battle/js/class/element.js	/^            return this.runAnimation.play({$/;"	v
+anonymousObject049acbdf0305	tests/star-battle/js/class/element.js	/^        this.scene.drawText({$/;"	v
+anonymousObject049acbdf0405	tests/star-battle/js/class/element.js	/^        this.scene.rotateDraw({$/;"	v
+anonymousObject5ed8dfbd0105	tests/star-battle/js/class/bullet.js	/^        this.deathAnimation.play({$/;"	v
+anonymousObject757cefa50105	tests/star-battle/js/class/plane.js	/^        this.deathAnimation.play({$/;"	v
+anonymousObject9e4e19ea0105	tests/star-battle/js/game.js	/^            el, {$/;"	v	method:Game.initSize
+app	tests/star-battle/index.html	/^    <div id="app">$/;"	I
+append	tests/star-battle/js/scenes/play.js	/^    append(obj) {$/;"	m	class:Play
+appendElement	tests/star-battle/js/scenes/play.js	/^    appendElement() {$/;"	m	class:Play
+appendEnemyCooldown	tests/star-battle/js/config/config.js	/^        appendEnemyCooldown: [2 * fps, 5 * fps],$/;"	p	property:config.game
+appendFriendCooldown	tests/star-battle/js/config/config.js	/^        appendFriendCooldown : [2*fps,5*fps],$/;"	p	property:config.game
+appendFuelCooldown	tests/star-battle/js/config/config.js	/^        appendFuelCooldown : [2*fps,5*fps],$/;"	p	property:config.game
+appendStarCooldown	tests/star-battle/js/config/config.js	/^        appendStarCooldown : [1*fps,2*fps],$/;"	p	property:config.game
+arr	tests/star-battle/js/scenes/play.js	/^            arr: [],$/;"	p	property:Play.initData.friends
+arr	tests/star-battle/js/scenes/play.js	/^            arr: [],$/;"	p	property:Play.initData.fuels
+arr	tests/star-battle/js/scenes/play.js	/^            arr: [],$/;"	p	property:Play.initData.stars
+arr	tests/star-battle/js/scenes/play.js	/^            arr: this.allEnemys,$/;"	p	property:Play.initData.enemys
+arr	tests/star-battle/js/scenes/play.js	/^            arr: this.allEnemys,$/;"	p	property:Play.initData.meteorites
 attr	includes/multipart.hpp	/^	std::pair<std::string, std::string>	attr;$/;"	m	struct:data_chunk	typeref:typename:std::pair<std::string,std::string>
-binding the socket	notes.md	/^# binding the socket$/;"	c
+batchAdd	tests/star-battle/js/config/config.js	/^    const batchAdd = (url, name, count,ext) => {$/;"	f
+batchImport	tests/star-battle/js/config/config.js	/^    const batchImport = (name, count) => {$/;"	f
+beingHit	tests/star-battle/js/config/config.js	/^        beingHit : -15,$/;"	p	property:config.fuelConfig
+body	tests/star-battle/css/common.css	/^html,body{$/;"	s
+body	tests/star-battle/css/style.css	/^body {$/;"	s
 boundary	includes/multipart.hpp	/^		std::string boundary;$/;"	m	class:multipart	typeref:typename:std::string
 buffer	includes/connection.hpp	/^	std::string	buffer;$/;"	m	struct:ws_delivery	typeref:typename:std::string
 build	Makefile	/^build:$/;"	t
 build	lib/libconfpp/Makefile	/^build:$/;"	t
 build/%.o	Makefile	/^build\/%.o: src\/%.cpp$/;"	t
 build/%.o	lib/libconfpp/Makefile	/^build\/%.o: src\/%.cpp$/;"	t
+bullet	tests/star-battle/js/class/plane.js	/^        this.bullet = class bullet extends Bullet{$/;"	c	method:Plane.initBullet
+bulletCollision	tests/star-battle/js/scenes/play.js	/^    bulletCollision(bullet, arr, callback) {$/;"	m	class:Play
+bulletCooldown	tests/star-battle/js/config/config.js	/^            bulletCooldown : 5 * fps,$/;"	p	variable:o
 cache_http_status	src/main.cpp	/^std::map<int, std::string> cache_http_status(){$/;"	f	typeref:typename:std::map<int,std::string>
 cache_mime_types	src/main.cpp	/^std::map<std::string, std::string> cache_mime_types(){$/;"	f	typeref:typename:std::map<std::string,std::string>
+call	tests/star-battle/js/scenes/play.js	/^        const call = () => {$/;"	f	method:Play.updateFuel
+call	tests/star-battle/js/scenes/play.js	/^        const call = () => {$/;"	f	method:Play.updateScore
+call	tests/star-battle/js/utils/utils.js	/^    const call = (obj, key) => {$/;"	f
+called	tests/star-battle/js/class/player.js	/^        const called = callback=>{$/;"	f	method:Player.event
+canvas	tests/star-battle/index.html	/^                <canvas id="canvas" class="absolute"><\/canvas>$/;"	I
 chunks	includes/multipart.hpp	/^		std::vector<data_chunk> chunks;$/;"	m	class:multipart	typeref:typename:std::vector<data_chunk>
 clean	Makefile	/^clean :$/;"	t
 clean	lib/libconfpp/Makefile	/^clean :$/;"	t
 cline	lib/libconfpp/src/parse.cpp	/^int cline = 1;$/;"	v	typeref:typename:int
 close_connection	src/connection.cpp	/^void ws_connections::close_connection(unsigned int idx, unsigned int port_idx){$/;"	f	class:ws_connections	typeref:typename:void
-communication domains	notes.md	/^## communication domains$/;"	s	chapter:it all starts with a socket
+col	tests/star-battle/js/config/config.js	/^        col: 4,$/;"	p	property:config.bulletDeathAnimation
+col	tests/star-battle/js/config/config.js	/^        col: 4,$/;"	p	property:config.planeDeathAnimation
+collision	tests/star-battle/js/scenes/play.js	/^    collision(a, b, callback) {$/;"	m	class:Play
 config	includes/RequestParsing.hpp	/^		ws_config_table	*config;$/;"	m	class:Request	typeref:typename:ws_config_table *
 config	includes/connection.hpp	/^		ws_config		config;$/;"	m	class:ws_connections	typeref:typename:ws_config
+config	tests/star-battle/js/config/config.js	/^const config = {};$/;"	C
+config.bulletDeathAnimation	tests/star-battle/js/config/config.js	/^    config.bulletDeathAnimation = {$/;"	p
+config.fuelConfig	tests/star-battle/js/config/config.js	/^    config.fuelConfig = {$/;"	p
+config.game	tests/star-battle/js/config/config.js	/^    config.game = {$/;"	p
+config.planeDeathAnimation	tests/star-battle/js/config/config.js	/^    config.planeDeathAnimation = {$/;"	p
+config.scoreConfig	tests/star-battle/js/config/config.js	/^    config.scoreConfig = {$/;"	p
 conn_fds	includes/connection.hpp	/^	std::vector<struct pollfd>	conn_fds;$/;"	m	struct:ws_port	typeref:typename:std::vector<struct pollfd>
+constructor	tests/star-battle/js/class/animation.js	/^    constructor(data,scene,debug) {$/;"	m	class:Animation
+constructor	tests/star-battle/js/class/cooldown.js	/^    constructor(cooldown,notImmediately=false) {$/;"	m	class:Cooldown
+constructor	tests/star-battle/js/class/element.js	/^    constructor(scene) {$/;"	m	class:Element
+constructor	tests/star-battle/js/class/plane.js	/^    constructor(scene) {$/;"	m	class:Plane
+constructor	tests/star-battle/js/class/scene.js	/^    constructor(el,game) {$/;"	m	class:Scene
+constructor	tests/star-battle/js/game.js	/^    constructor() {$/;"	m	class:Game
+constructor	tests/star-battle/js/scenes/play.js	/^    constructor(el,game){$/;"	m	class:Play
+container	tests/star-battle/index.html	/^        <div id="container" class="absolute">$/;"	I
 content	includes/multipart.hpp	/^	std::string				content;$/;"	m	struct:data_chunk	typeref:typename:std::string
+cooldown	tests/star-battle/js/config/config.js	/^        cooldown: 0.01 * fps,$/;"	p	property:config.bulletDeathAnimation
+cooldown	tests/star-battle/js/config/config.js	/^        cooldown: 0.05 * fps,$/;"	p	property:config.planeDeathAnimation
+cooldown	tests/star-battle/js/scenes/play.js	/^            cooldown: new Cooldown(config.game.appendEnemyCooldown),$/;"	p	property:Play.initData.enemys
+cooldown	tests/star-battle/js/scenes/play.js	/^            cooldown: new Cooldown(config.game.appendEnemyCooldown),$/;"	p	property:Play.initData.meteorites
+cooldown	tests/star-battle/js/scenes/play.js	/^            cooldown: new Cooldown(config.game.appendFriendCooldown),$/;"	p	property:Play.initData.friends
+cooldown	tests/star-battle/js/scenes/play.js	/^            cooldown: new Cooldown(config.game.appendFriendCooldown),$/;"	p	property:Play.initData.fuels
+cooldown	tests/star-battle/js/scenes/play.js	/^            cooldown: new Cooldown(config.game.appendStarCooldown),$/;"	p	property:Play.initData.stars
 core	lib/libconfpp/includes/config.h	/^		std::vector<ws_config_table *> core;	\/\/ a vector that holds all the ws_config_tables$/;"	m	class:ws_config	typeref:typename:std::vector<ws_config_table * >
 correct_Format	src/RequestParsing.cpp	/^std::string	correct_Format(const std::string &str)$/;"	f	typeref:typename:std::string
-creating a socket	notes.md	/^# creating a socket$/;"	c
+count	tests/star-battle/js/utils/utils.js	/^    let count = 0;$/;"	v
+created	tests/star-battle/js/class/scene.js	/^    created(){$/;"	m	class:Scene
+created	tests/star-battle/js/scenes/play.js	/^    created(){$/;"	m	class:Play
+curl	tests/curl.html	/^<title>curl<\/title>$/;"	j
+curl supports	tests/curl.html	/^<h2> curl supports <\/h2>$/;"	i
+current	tests/star-battle/js/utils/utils.js	/^    let current = start;$/;"	v
+d	tests/star-battle/js/class/player.js	/^            'd': this.right,$/;"	p	variable:Player.event.keys
+data	tests/star-battle/js/class/element.js	/^            data: this.getDrawInfo(true),$/;"	p	variable:anonymousObject049acbdf0405
+data	tests/star-battle/js/config/config.js	/^        const data = callback(o);$/;"	C
+data	tests/star-battle/js/config/config.js	/^    config.data = ()=>{$/;"	f	constant:config
+data	tests/star-battle/js/utils/utils.js	/^            data,$/;"	p	variable:
 data_chunk	includes/multipart.hpp	/^typedef struct data_chunk{$/;"	s
 data_chunk	includes/multipart.hpp	/^}data_chunk;$/;"	t	typeref:struct:data_chunk
+death	tests/star-battle/js/class/element.js	/^    death() {$/;"	m	class:Element
+deathing	tests/star-battle/js/class/bullet.js	/^    deathing() {$/;"	m	class:Bullet
+deathing	tests/star-battle/js/class/fuel.js	/^    deathing() {$/;"	m	class:Fuel
+deathing	tests/star-battle/js/class/plane.js	/^    deathing() {$/;"	m	class:Plane
 debug	src/log.cpp	/^void ws_log::debug(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
+deg	tests/star-battle/js/class/element.js	/^            deg: this.deg,$/;"	p	variable:anonymousObject049acbdf0405
 delete_dir	src/DELETEmethod.cpp	/^int delete_dir(std::string filepath) {$/;"	f	typeref:typename:int
 delivery	includes/connection.hpp	/^	std::string	delivery;$/;"	m	struct:ws_delivery	typeref:typename:std::string
 detect_log_level	src/log.cpp	/^LOG_LEVEL ws_log::detect_log_level(std::string &msg){$/;"	f	class:ws_log	typeref:typename:LOG_LEVEL
+dirlist	default.conf	/^dirlist = "true"$/;"	k
 dirlist	src/main.cpp	/^bool					dirlist = false;$/;"	v	typeref:typename:bool
-dirlist	tests/default.conf	/^dirlist = "true"$/;"	k
-domains?	notes.md	/^### domains?$/;"	S	section:it all starts with a socket""communication domains
+down	tests/star-battle/js/class/player.js	/^    down() {$/;"	m	class:Player
+draw	tests/star-battle/js/class/animation.js	/^    draw(info) {$/;"	m	class:Animation
+draw	tests/star-battle/js/class/element.js	/^    draw() {$/;"	m	class:Element
+draw	tests/star-battle/js/scenes/play.js	/^    draw(data) {$/;"	m	class:Play
+drawText	tests/star-battle/js/class/element.js	/^    drawText(callback) {$/;"	m	class:Element
+drawText	tests/star-battle/js/scenes/play.js	/^    drawText(data) {$/;"	m	class:Play
+elem	tests/star-battle/js/scenes/play.js	/^            elem: Enemy,$/;"	p	property:Play.initData.enemys
+elem	tests/star-battle/js/scenes/play.js	/^            elem: Friend,$/;"	p	property:Play.initData.friends
+elem	tests/star-battle/js/scenes/play.js	/^            elem: Fuel,$/;"	p	property:Play.initData.fuels
+elem	tests/star-battle/js/scenes/play.js	/^            elem: Meteorite,$/;"	p	property:Play.initData.meteorites
+elem	tests/star-battle/js/scenes/play.js	/^            elem: Star,$/;"	p	property:Play.initData.stars
+end	tests/star-battle/js/class/animation.js	/^    end(callback) {$/;"	m	class:Animation
+enemyBullets	tests/star-battle/js/scenes/play.js	/^        this.enemyBullets = [];$/;"	p	method:Play.initData
+enemys	tests/star-battle/js/scenes/play.js	/^        this.enemys = {$/;"	p	method:Play.initData
 error	src/log.cpp	/^void ws_log::error(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
+event	tests/star-battle/js/class/player.js	/^    event() {$/;"	m	class:Player
+event	tests/star-battle/js/scenes/over.js	/^    event(){$/;"	m	class:Over
+event	tests/star-battle/js/scenes/play.js	/^    event() {$/;"	m	class:Play
+event	tests/star-battle/js/scenes/rank.js	/^    event() {$/;"	m	class:Rank
+event	tests/star-battle/js/scenes/start.js	/^    event() {$/;"	m	class:Start
+execCGI	src/handleCGI.cpp	/^void	handleCGI::execCGI(){$/;"	f	class:handleCGI	typeref:typename:void
 expand_escaped	lib/libconfpp/src/parse.cpp	/^char expand_escaped(char escape_seq){$/;"	f	typeref:typename:char
 extract_string	lib/libconfpp/src/parse.cpp	/^std::string extract_string (std::string base_string, std::string delims, int *start){$/;"	f	typeref:typename:std::string
+factory	tests/star-battle/js/scenes/play.js	/^    factory(elem) {$/;"	m	class:Play
 fclean	Makefile	/^fclean : clean$/;"	t
 fclean	lib/libconfpp/Makefile	/^fclean : clean$/;"	t
-fdd	tests/nc.c	/^int fdd = 0;$/;"	v	typeref:typename:int
-fds	tests/nc.c	/^struct pollfd fds[20];$/;"	v	typeref:struct:pollfd[20]
 find_and_delete	src/multipart.cpp	/^std::string find_and_delete(std::string &haystack, std::string needle){$/;"	f	typeref:typename:std::string
+fire	tests/star-battle/js/class/plane.js	/^    fire() {$/;"	m	class:Plane
+fnama	tests/lhorbax.php	/^		$fnama = $_GET['fnama'];$/;"	v
+fnama	tests/lhorbax.php	/^		$fnama = $_POST['fnama'];$/;"	v
+fontSize	tests/star-battle/js/config/config.js	/^        fontSize : {$/;"	p	property:config.game
+fontSize	tests/star-battle/js/scenes/play.js	/^        const fontSize = (status)=>{$/;"	f	method:Play.event
+footer	tests/star-battle/css/style.css	/^footer{$/;"	s
+footer a	tests/star-battle/css/style.css	/^footer a{$/;"	s
+form	tests/tarzan.py	/^form = cgi.FieldStorage()$/;"	v
+fps	tests/star-battle/js/config/config.js	/^const fps = 60;$/;"	C
+friends	tests/star-battle/js/scenes/play.js	/^        this.friends = {$/;"	p	method:Play.initData
+fuel	tests/star-battle/index.html	/^                                <span id="fuel">00<\/span>$/;"	I
+fuelLoseSpeed	tests/star-battle/js/config/config.js	/^        fuelLoseSpeed: -1,$/;"	p	property:config.fuelConfig
+fuelMax	tests/star-battle/js/config/config.js	/^        fuelMax: 30,$/;"	p	property:config.fuelConfig
+fuelRaiseSpeed	tests/star-battle/js/config/config.js	/^        fuelRaiseSpeed: 15,$/;"	p	property:config.fuelConfig
+fuels	tests/star-battle/js/scenes/play.js	/^        this.fuels = {$/;"	p	method:Play.initData
+game	tests/star-battle/js/main.js	/^    const game = new Game();$/;"	C
+game-font-size-add	tests/star-battle/index.html	/^                            <li id="game-font-size-add">$/;"	I
+game-font-size-reduce	tests/star-battle/index.html	/^                            <li id="game-font-size-reduce">$/;"	I
+game-mute-btn	tests/star-battle/index.html	/^                            <li id="game-mute-btn">$/;"	I
+game-pause-btn	tests/star-battle/index.html	/^                            <li id="game-pause-btn">$/;"	I
+get	tests/star-battle/js/utils/utils.js	/^    const get = (key) => {$/;"	f
 getBody	src/RequestParsing.cpp	/^std::string	&Request::getBody(){$/;"	f	class:Request	typeref:typename:std::string &
+getCGIEnv	src/handleCGI.cpp	/^std::map<std::string, std::string>	handleCGI::getCGIEnv(){$/;"	f	class:handleCGI	typeref:typename:std::map<std::string,std::string>
+getCGIPath	src/handleCGI.cpp	/^std::string	handleCGI::getCGIPath(){$/;"	f	class:handleCGI	typeref:typename:std::string
 getConfig	src/RequestParsing.cpp	/^ws_config_table	*Request::getConfig(){$/;"	f	class:Request	typeref:typename:ws_config_table *
 getCookies	src/RequestParsing.cpp	/^std::map<std::string, std::string>	Request::getCookies() const{$/;"	f	class:Request	typeref:typename:std::map<std::string,std::string>
+getCooldown	tests/star-battle/js/class/cooldown.js	/^    getCooldown(cooldown) {$/;"	m	class:Cooldown
+getDrawInfo	tests/star-battle/js/class/element.js	/^    getDrawInfo(isRotate=false) {$/;"	m	class:Element
 getMetadata	src/RequestParsing.cpp	/^std::string	Request::getMetadata(const std::string &key) const{$/;"	f	class:Request	typeref:typename:std::string
 getMethod	src/RequestParsing.cpp	/^std::string	Request::getMethod() const{$/;"	f	class:Request	typeref:typename:std::string
+getPos	tests/star-battle/js/class/animation.js	/^    getPos() {$/;"	m	class:Animation
 getRequest	src/Response.cpp	/^Request	*Response::getRequest(){$/;"	f	class:Response	typeref:typename:Request *
 getStatusCode	src/Response.cpp	/^int	Response::getStatusCode(){$/;"	f	class:Response	typeref:typename:int
 getUri	src/RequestParsing.cpp	/^std::string	Request::getUri() const{$/;"	f	class:Request	typeref:typename:std::string
 getVersion	src/RequestParsing.cpp	/^std::string	Request::getVersion() const{$/;"	f	class:Request	typeref:typename:std::string
 get_chunks	src/multipart.cpp	/^std::vector<data_chunk> multipart::get_chunks(){$/;"	f	class:multipart	typeref:typename:std::vector<data_chunk>
+getquery	src/RequestParsing.cpp	/^std::string Request::getquery(){$/;"	f	class:Request	typeref:typename:std::string
+h	tests/star-battle/js/class/bullet.js	/^            h : this.h * 1.5,$/;"	p	variable:anonymousObject5ed8dfbd0105
+h	tests/star-battle/js/class/element.js	/^                h : this.h,$/;"	p	variable:anonymousObject049acbdf0205
+h	tests/star-battle/js/class/plane.js	/^            h : this.h,$/;"	p	variable:anonymousObject757cefa50105
+h	tests/star-battle/js/config/config.js	/^            h: 70,$/;"	p	variable:o
+h	tests/star-battle/js/config/config.js	/^        h: 480,$/;"	p	property:config.game
+handleCGI	includes/handleCGI.hpp	/^class	handleCGI$/;"	c
+handleCGI	src/handleCGI.cpp	/^handleCGI::handleCGI(Response *request, std::string path) {$/;"	f	class:handleCGI
 handleResponse	src/Response.cpp	/^void	Response::handleResponse(){$/;"	f	class:Response	typeref:typename:void
+height	tests/star-battle/js/game.js	/^                height: config.game.h + 'px',$/;"	p	variable:Game.initSize.anonymousObject9e4e19ea0105
 hello	lib/libconfpp/tests/lib.conf	/^hello = okeny?$/;"	k
+hidden	tests/star-battle/js/class/scene.js	/^    hidden() {$/;"	m	class:Scene
+hotkey	tests/star-battle/js/utils/utils.js	/^const hotkey = (() => {$/;"	C
+html	tests/star-battle/css/common.css	/^html,body{$/;"	s
 http_status	src/main.cpp	/^std::map<int, std::string>		http_status;$/;"	v	typeref:typename:std::map<int,std::string>
+images	tests/star-battle/js/config/config.js	/^        let images = [];$/;"	v
+images	tests/star-battle/js/config/config.js	/^        let images = {};$/;"	v
+img	tests/star-battle/js/class/element.js	/^                img : this.img,$/;"	p	variable:Element.setup.anonymousObject049acbdf0105
+img	tests/star-battle/js/config/config.js	/^            img : 'player',$/;"	p	variable:o
+img	tests/star-battle/js/config/config.js	/^        img: 'boom',$/;"	p	property:config.bulletDeathAnimation
+img	tests/star-battle/js/config/config.js	/^        img: 'boom',$/;"	p	property:config.planeDeathAnimation
+incrementAnimation	tests/star-battle/js/utils/utils.js	/^const incrementAnimation = (start, end, callback) => {$/;"	f
 info	src/log.cpp	/^void ws_log::info(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
+initBullet	tests/star-battle/js/class/plane.js	/^    initBullet(bulletType,bulletArray) {$/;"	m	class:Plane
+initCanvas	tests/star-battle/js/scenes/play.js	/^    initCanvas() {$/;"	m	class:Play
+initData	tests/star-battle/js/game.js	/^    initData() {$/;"	m	class:Game
+initData	tests/star-battle/js/scenes/play.js	/^    initData() {$/;"	m	class:Play
+initPlayer	tests/star-battle/js/scenes/play.js	/^    initPlayer() {$/;"	m	class:Play
+initScenes	tests/star-battle/js/game.js	/^    initScenes() {$/;"	m	class:Game
+initSize	tests/star-battle/js/game.js	/^    initSize() {$/;"	m	class:Game
 init_socket	src/monitor.cpp	/^void	init_socket(ws_port &cport, std::string port){$/;"	f	typeref:typename:void
+isArray	tests/star-battle/js/utils/utils.js	/^const isArray = (array) => {$/;"	f
+isCGI	src/handleCGI.cpp	/^bool	isCGI(const std::string &Path){$/;"	f	typeref:typename:bool
+isEnter	tests/star-battle/js/class/element.js	/^    isEnter() {$/;"	m	class:Element
 isExist	src/DELETEmethod.cpp	/^bool	isExist(const std::string &fullPath){$/;"	f	typeref:typename:bool
+isImage	tests/star-battle/js/utils/utils.js	/^const isImage = (img) => {$/;"	f
+isOut	tests/star-battle/js/class/element.js	/^    isOut() {$/;"	m	class:Element
+isPlus	tests/star-battle/js/utils/utils.js	/^    const isPlus = num >= 0;$/;"	C
 is_dir	src/DELETEmethod.cpp	/^bool is_dir(std::string path){$/;"	f	typeref:typename:bool
-it all starts with a socket	notes.md	/^# it all starts with a socket$/;"	c
 key	lib/libconfpp/includes/config.h	/^	std::string	key;$/;"	m	struct:ws_config_container	typeref:typename:std::string
+keys	tests/star-battle/js/class/player.js	/^        const keys = {$/;"	v	method:Player.event
+lalamat	tests/lhorbax.php	/^		$lalamat = $_GET['lalamat'];$/;"	v
+lalamat	tests/lhorbax.php	/^		$lalamat = $_POST['lalamat'];$/;"	v
 last_interaction	includes/connection.hpp	/^	std::vector<time_t>		last_interaction;$/;"	m	struct:ws_port	typeref:typename:std::vector<time_t>
 left	includes/connection.hpp	/^	ssize_t		left; $/;"	m	struct:ws_delivery	typeref:typename:ssize_t
+left	tests/star-battle/js/class/player.js	/^    left() {$/;"	m	class:Player
+len	tests/star-battle/js/utils/utils.js	/^    const len = keys.length;$/;"	C
+li	tests/star-battle/css/common.css	/^li{$/;"	s
+limitDetection	tests/star-battle/js/class/element.js	/^    limitDetection() {$/;"	m	class:Element
 list_dir	src/GETmethod.cpp	/^std::string	list_dir(std::string path){$/;"	f	typeref:typename:std::string
-listening for incomming connections	notes.md	/^## listening for incomming connections$/;"	s	chapter:binding the socket
+load	tests/star-battle/js/utils/utils.js	/^    const load = Obj === Image ? 'onload' : 'onloadedmetadata';$/;"	C
+loadAudios	tests/star-battle/js/utils/utils.js	/^const loadAudios = (audios, callback) => {$/;"	f
+loadImages	tests/star-battle/js/utils/utils.js	/^const loadImages = (images, callback) => {$/;"	f
+loadResource	tests/star-battle/js/utils/utils.js	/^const loadResource = (list, Obj, callback) => {$/;"	f
+log	tests/star-battle/js/utils/utils.js	/^const log = console.log.bind(console);$/;"	C
 log_file	includes/log.hpp	/^		std::ofstream	log_file;$/;"	m	class:ws_log	typeref:typename:std::ofstream
+log_level	default.conf	/^log_level = "ERROR"$/;"	k
 log_level	includes/log.hpp	/^		LOG_LEVEL	log_level;$/;"	m	class:ws_log	typeref:typename:LOG_LEVEL
-log_level	tests/default.conf	/^log_level = "ERROR"$/;"	k
+log_path	default.conf	/^log_path = "\/tmp\/webserv.log"$/;"	k
 log_path	includes/log.hpp	/^		std::string	log_path;$/;"	m	class:ws_log	typeref:typename:std::string
-log_path	tests/default.conf	/^log_path = "\/tmp\/webserv.log"$/;"	k
+log_to_file	default.conf	/^log_to_file="true"$/;"	k
 log_to_file	includes/log.hpp	/^		bool		log_to_file;$/;"	m	class:ws_log	typeref:typename:bool
+logo	tests/star-battle/index.html	/^        <div id="logo">$/;"	I
 logx	src/main.cpp	/^ws_log					logx;$/;"	v	typeref:typename:ws_log
+loop	tests/star-battle/js/config/config.js	/^        loop : false,$/;"	p	property:config.bulletDeathAnimation
+loop	tests/star-battle/js/config/config.js	/^        loop : false,$/;"	p	property:config.planeDeathAnimation
 main	lib/libconfpp/tests/main.cpp	/^int main(int argc, char **argv){$/;"	f	typeref:typename:int
 main	src/main.cpp	/^int main(int argc, char **argv){$/;"	f	typeref:typename:int
-main	tests/nc.c	/^int main(int argc, char **argv) {$/;"	f	typeref:typename:int
-main_server	tests/default.conf	/^[main_server]$/;"	s
 main_socket	includes/connection.hpp	/^	int 				main_socket;			\/\/ main socket fd$/;"	m	struct:ws_port	typeref:typename:int
-max_connections	tests/default.conf	/^max_connections = 20 $/;"	k	section:media_server
-max_connections	tests/default.conf	/^max_connections = 20$/;"	k	section:main_server
-max_connections	tests/default.conf	/^max_connections = 20$/;"	k	section:media_server
-media_server	tests/default.conf	/^[media_server]$/;"	s
+maptoenv	src/handleCGI.cpp	/^char **maptoenv(std::map<std::string, std::string> menvs){$/;"	f	typeref:typename:char **
+max	tests/star-battle/js/config/config.js	/^            max : 30,$/;"	p	property:config.game.fontSize
+max_connections	default.conf	/^max_connections = 20 $/;"	k	section:media_server
+max_connections	default.conf	/^max_connections = 20$/;"	k	section:media_server
+media_server	default.conf	/^[media_server]$/;"	s
 meme	lib/libconfpp/tests/lib.conf	/^meme = 0x488$/;"	k
 meme	lib/libconfpp/tests/lib.conf	/^meme = 0xdeadbeef$/;"	k
+meteorites	tests/star-battle/js/scenes/play.js	/^        this.meteorites = {$/;"	p	method:Play.initData
 mime_types	src/main.cpp	/^std::map<std::string, std::string> 	mime_types;$/;"	v	typeref:typename:std::map<std::string,std::string>
+min	tests/star-battle/js/config/config.js	/^            min : 12,$/;"	p	property:config.game.fontSize
 monitor_connections	src/connection.cpp	/^void ws_connections::monitor_connections(){$/;"	f	class:ws_connections	typeref:typename:void
+move	tests/star-battle/js/class/bullet.js	/^    move() {$/;"	m	class:Bullet
+move	tests/star-battle/js/class/fuel.js	/^    move() {$/;"	m	class:Fuel
+move	tests/star-battle/js/class/plane.js	/^    move() {$/;"	m	class:Plane
+move	tests/star-battle/js/class/star.js	/^    move() {$/;"	m	class:Star
 multipart	includes/multipart.hpp	/^		multipart(){};$/;"	f	class:multipart
 multipart	includes/multipart.hpp	/^class multipart{$/;"	c
 multipart	src/multipart.cpp	/^multipart::multipart(std::string boundary){$/;"	f	class:multipart
+mute	tests/star-battle/js/scenes/play.js	/^    mute(){$/;"	m	class:Play
+n	tests/star-battle/js/utils/utils.js	/^    const n = Math.abs(num);$/;"	C
 name	lib/libconfpp/tests/lib.conf	/^name = "nigger"$/;"	k	section:servera
 name	lib/libconfpp/tests/lib.conf	/^name = "zebi"$/;"	k	section:servera
+name	tests/star-battle/index.html	/^                <input type="text" id="name" placeholder="请输入您的名字" \/>$/;"	I
+name	tests/star-battle/js/scenes/rank.js	/^            name,$/;"	p	variable:
+name	tests/tarzan.py	/^name = form.getvalue('name')$/;"	v
 nport	includes/connection.hpp	/^	int				nport;				\/\/ port number$/;"	m	struct:ws_port	typeref:typename:int
+numberFormat	tests/star-battle/js/utils/utils.js	/^const numberFormat = (num) => {$/;"	f
+o	tests/star-battle/js/config/config.js	/^        const o = {$/;"	v
+obj	tests/star-battle/js/utils/utils.js	/^        const obj = new Obj();$/;"	C
+obj	tests/star-battle/js/utils/utils.js	/^        obj[load] = () => {$/;"	f
 ohmysplit	src/RequestParsing.cpp	/^std::vector<std::string> ohmysplit(const std::string &str, const std::string &sep)$/;"	f	typeref:typename:std::vector<std::string>
+on	tests/star-battle/js/utils/utils.js	/^const on = (el, type, callback) => {$/;"	f
 operator =	lib/libconfpp/src/config.cpp	/^ws_config &ws_config::operator=(ws_config x){$/;"	f	class:ws_config	typeref:typename:ws_config &
 operator =	src/connection.cpp	/^ws_connections &ws_connections::operator=(ws_connections &x){$/;"	f	class:ws_connections	typeref:typename:ws_connections &
 operator =	src/log.cpp	/^ws_log& ws_log::operator=(ws_log x){$/;"	f	class:ws_log	typeref:typename:ws_log &
 operator []	lib/libconfpp/src/config.cpp	/^ws_config_table *ws_config::operator[](int index){$/;"	f	class:ws_config	typeref:typename:ws_config_table *
+over	tests/star-battle/index.html	/^            <div id="over" class="column absolute">$/;"	I
+over	tests/star-battle/js/game.js	/^            over: new Over('#over', this),$/;"	p	property:Game.initScenes.scenes
+over	tests/star-battle/js/game.js	/^    over() {$/;"	m	class:Game
 pack_request	src/connection.cpp	/^bool ws_connections::pack_request(ws_delivery *delivery, ws_delivery *response, int nport){$/;"	f	class:ws_connections	typeref:typename:bool
 parseCookies	src/RequestParsing.cpp	/^bool	Request::parseCookies(){$/;"	f	class:Request	typeref:typename:bool
 parseMetadata	src/RequestParsing.cpp	/^bool	Request::parseMetadata(std::stringstream &header){$/;"	f	class:Request	typeref:typename:bool
@@ -279,29 +559,61 @@ parse_mbody	src/multipart.cpp	/^void multipart::parse_mbody(std::string mbody){$
 parse_propreties	src/multipart.cpp	/^std::map<std::string, std::string> multipart::parse_propreties(std::string &props){$/;"	f	class:multipart	typeref:typename:std::map<std::string,std::string>
 parse_string	lib/libconfpp/src/parse.cpp	/^void ws_config::parse_string(std::string conf){$/;"	f	class:ws_config	typeref:typename:void
 parse_table	lib/libconfpp/src/parse.cpp	/^ws_config_table *ws_config::parse_table(std::string conf, int *idx){$/;"	f	class:ws_config	typeref:typename:ws_config_table *
+path	includes/handleCGI.hpp	/^		std::string path;$/;"	m	class:handleCGI	typeref:typename:std::string
+pause	tests/star-battle/js/scenes/play.js	/^    pause() {$/;"	m	class:Play
+plane	tests/star-battle/js/config/config.js	/^    const plane = (callback=false) => {$/;"	f
+planeAnimation	tests/star-battle/js/config/config.js	/^    const planeAnimation = ()=>{$/;"	f
+play	tests/star-battle/index.html	/^            <div id="play" class="absolute">$/;"	I
+play	tests/star-battle/js/class/animation.js	/^    play(info) {$/;"	m	class:Animation
+play	tests/star-battle/js/game.js	/^            play: new Play('#play', this),$/;"	p	property:Game.initScenes.scenes
+play	tests/star-battle/js/game.js	/^    play() {$/;"	m	class:Game
+playerBullets	tests/star-battle/js/scenes/play.js	/^        this.playerBullets = [];$/;"	p	method:Play.initData
+playerCollision	tests/star-battle/js/scenes/play.js	/^    playerCollision(el, callback) {$/;"	m	class:Play
+port	default.conf	/^port = 8083$/;"	k	section:media_server
 port	lib/libconfpp/tests/lib.conf	/^port = 443$/;"	k	section:servera
 port	lib/libconfpp/tests/lib.conf	/^port = 6060$/;"	k	section:servera
-port	tests/default.conf	/^port = 8082$/;"	k	section:media_server
 ports	includes/connection.hpp	/^		std::vector<ws_port>	ports;$/;"	m	class:ws_connections	typeref:typename:std::vector<ws_port>
 propreties	includes/multipart.hpp	/^	std::map<std::string, std::string>	propreties;$/;"	m	struct:data_chunk	typeref:typename:std::map<std::string,std::string>
 push_cont_back	lib/libconfpp/src/config.cpp	/^void ws_config::push_cont_back(ws_config_container *cont, int idx){$/;"	f	class:ws_config	typeref:typename:void
 push_table_back	lib/libconfpp/src/config.cpp	/^void ws_config::push_table_back(ws_config_table *table){$/;"	f	class:ws_config	typeref:typename:void
-questions	notes.md	/^# questions$/;"	c
-quick history of a connection	notes.md	/^## quick history of a connection$/;"	s	chapter:binding the socket
-r	tests/x.py	/^    r = requests.post("http:\/\/localhost:6666", data=cyclic(6000))$/;"	v
+query	includes/RequestParsing.hpp	/^		std::string	query;$/;"	m	class:Request	typeref:typename:std::string
+raf	tests/star-battle/js/utils/utils.js	/^const raf = (() => {$/;"	C
+random	tests/star-battle/js/utils/utils.js	/^const random = (end, start) => {$/;"	f
+randomArrayItem	tests/star-battle/js/utils/utils.js	/^const randomArrayItem = (array) => {$/;"	f
+rank	tests/star-battle/index.html	/^            <div id="rank" class="column absolute">$/;"	I
+rank	tests/star-battle/js/game.js	/^            rank: new Rank('#rank', this),$/;"	p	property:Game.initScenes.scenes
+rank	tests/star-battle/js/game.js	/^    rank() {$/;"	m	class:Game
+rank	tests/star-battle/js/scenes/rank.js	/^    rank() {$/;"	m	class:Rank
 re	Makefile	/^re : fclean $(LIBCONFPP) all$/;"	t
 re	lib/libconfpp/Makefile	/^re : fclean all$/;"	t
 read_file	src/GETmethod.cpp	/^std::string	read_file(std::string filename){$/;"	f	typeref:typename:std::string
+readbuff	includes/connection.hpp	/^	size_t		readbuff;$/;"	m	struct:ws_delivery	typeref:typename:size_t
+reduceLife	tests/star-battle/js/class/element.js	/^    reduceLife() {$/;"	m	class:Element
 render_response	src/Response.cpp	/^std::string Response::render_response(){$/;"	f	class:Response	typeref:typename:std::string
 req	includes/connection.hpp	/^	Request		*req;$/;"	m	struct:ws_delivery	typeref:typename:Request *
+req	includes/handleCGI.hpp	/^		Response *req;$/;"	m	class:handleCGI	typeref:typename:Response *
+req_timeout	default.conf	/^req_timeout = 5			# in seconds$/;"	k	section:media_server
 req_timeout	includes/connection.hpp	/^	time_t				req_timeout;$/;"	m	struct:ws_port	typeref:typename:time_t
-req_timeout	tests/default.conf	/^req_timeout = 20000			# in seconds$/;"	k	section:media_server
 request	includes/RequestParsing.hpp	/^		ws_delivery	*request;$/;"	m	class:Request	typeref:typename:ws_delivery *
 requests	includes/connection.hpp	/^	std::vector<ws_delivery>	requests;$/;"	m	struct:ws_port	typeref:typename:std::vector<ws_delivery>
+res	tests/star-battle/js/utils/res.js	/^const res = (() => {$/;"	C
+res	tests/star-battle/js/utils/utils.js	/^    const res = n > 9 ? n : '0' + n;$/;"	C
+reset	tests/star-battle/js/class/cooldown.js	/^    reset() {$/;"	m	class:Cooldown
 response	includes/RequestParsing.hpp	/^		ws_delivery	*response;$/;"	m	class:Request	typeref:typename:ws_delivery *
 responses	includes/connection.hpp	/^	std::vector<ws_delivery>	responses;$/;"	m	struct:ws_port	typeref:typename:std::vector<ws_delivery>
-root_dir	tests/default.conf	/^root_dir = "\/etc"$/;"	k	section:main_server
-root_dir	tests/default.conf	/^root_dir = "\/home\/lmongol\/Projects\/wibsirv\/tests"$/;"	k	section:media_server
+restart-btn	tests/star-battle/index.html	/^                <button id="restart-btn" class="btn">$/;"	I
+result	tests/star-battle/js/utils/utils.js	/^    const result = {};$/;"	C
+right	tests/star-battle/js/class/player.js	/^    right() {$/;"	m	class:Player
+root_dir	default.conf	/^root_dir = "\/home\/lmongol\/Projects\/wibsirv\/tests"$/;"	k	section:media_server
+rotate	tests/star-battle/js/class/element.js	/^    rotate() {$/;"	m	class:Element
+rotateDraw	tests/star-battle/js/scenes/play.js	/^    rotateDraw(conf) {$/;"	m	class:Play
+row	tests/star-battle/js/config/config.js	/^        row: 4,$/;"	p	property:config.bulletDeathAnimation
+row	tests/star-battle/js/config/config.js	/^        row: 4,$/;"	p	property:config.planeDeathAnimation
+s	tests/star-battle/js/class/player.js	/^            's': this.down,$/;"	p	variable:Player.event.keys
+scenes	tests/star-battle/js/game.js	/^        this.scenes = {$/;"	p	method:Game.initScenes
+score	tests/star-battle/index.html	/^                                <span id="score">00<\/span>$/;"	I
+score	tests/star-battle/js/scenes/rank.js	/^            score,$/;"	p	variable:
+search_replace	src/GETmethod.cpp	/^std::string search_replace(std::string str, std::string a, std::string b) {$/;"	f	typeref:typename:std::string
 search_table	lib/libconfpp/src/search.cpp	/^ws_config_table *ws_config::search_table(std::string table_name){$/;"	f	class:ws_config	typeref:typename:ws_config_table *
 search_table_port	lib/libconfpp/src/search.cpp	/^ws_config_table *ws_config::search_table_port(int port){$/;"	f	class:ws_config	typeref:typename:ws_config_table *
 search_val	lib/libconfpp/src/search.cpp	/^std::string ws_config::search_val(std::string table_name, std::string key){$/;"	f	class:ws_config	typeref:typename:std::string
@@ -314,6 +626,8 @@ servera	lib/libconfpp/tests/lib.conf	/^[servera]$/;"	s
 setBody	src/RequestParsing.cpp	/^void	Request::setBody(const std::string &body){$/;"	f	class:Request	typeref:typename:void
 setBody	src/Response.cpp	/^bool	Response::setBody(const std::string &body){$/;"	f	class:Response	typeref:typename:bool
 setCookies	src/RequestParsing.cpp	/^void	Request::setCookies(const std::string &key, const std::string &value){$/;"	f	class:Request	typeref:typename:void
+setFontStyle	tests/star-battle/js/scenes/play.js	/^    setFontStyle(font = "20px Arial", yellow = "yellow") {$/;"	m	class:Play
+setInitY	tests/star-battle/js/class/element.js	/^    setInitY() {$/;"	m	class:Element
 setMetadata	src/RequestParsing.cpp	/^void	Request::setMetadata(const std::string &key, const std::string &value){$/;"	f	class:Request	typeref:typename:void
 setMetadata	src/Response.cpp	/^bool	Response::setMetadata(const std::string &key, const std::string &value){$/;"	f	class:Response	typeref:typename:bool
 setMethod	src/RequestParsing.cpp	/^void	Request::setMethod(const std::string &method){$/;"	f	class:Request	typeref:typename:void
@@ -323,25 +637,100 @@ setUri	src/RequestParsing.cpp	/^void	Request::setUri(const std::string &uri){$/;
 setVersion	src/RequestParsing.cpp	/^void	Request::setVersion(const std::string &version){$/;"	f	class:Request	typeref:typename:void
 set_log_level	src/log.cpp	/^void ws_log::set_log_level(LOG_LEVEL level){$/;"	f	class:ws_log	typeref:typename:void
 setboundary	src/multipart.cpp	/^void multipart::setboundary(std::string boundary){$/;"	f	class:multipart	typeref:typename:void
+setup	tests/star-battle/js/class/bullet.js	/^    setup(bulletType) {$/;"	m	class:Bullet
+setup	tests/star-battle/js/class/element.js	/^    setup(obj) {$/;"	m	class:Element
+setup	tests/star-battle/js/class/enemy.js	/^    setup() {$/;"	m	class:Enemy
+setup	tests/star-battle/js/class/friend.js	/^    setup() {$/;"	m	class:Friend
+setup	tests/star-battle/js/class/fuel.js	/^    setup() {$/;"	m	class:Fuel
+setup	tests/star-battle/js/class/meteorite.js	/^    setup() {$/;"	m	class:Meteorite
+setup	tests/star-battle/js/class/plane.js	/^            setup() {$/;"	m	class:Plane.initBullet.bullet
+setup	tests/star-battle/js/class/plane.js	/^    setup(obj) {$/;"	m	class:Plane
+setup	tests/star-battle/js/class/player.js	/^    setup() {$/;"	m	class:Player
+setup	tests/star-battle/js/class/scene.js	/^    setup() {$/;"	m	class:Scene
+setup	tests/star-battle/js/class/star.js	/^    setup() {$/;"	m	class:Star
+setup	tests/star-battle/js/game.js	/^    setup() {$/;"	m	class:Game
+setup	tests/star-battle/js/scenes/over.js	/^    setup() {$/;"	m	class:Over
+setup	tests/star-battle/js/scenes/play.js	/^    setup() {$/;"	m	class:Play
+setup	tests/star-battle/js/scenes/rank.js	/^    setup() {$/;"	m	class:Rank
+setup	tests/star-battle/js/scenes/start.js	/^    setup() {$/;"	m	class:Start
 setup_socket	src/monitor.cpp	/^ws_port ws_connections::setup_socket(ws_config &config, int table_idx){$/;"	f	class:ws_connections	typeref:typename:ws_port
+shoot	tests/star-battle/index.html	/^                                <span id="shoot">00<\/span>$/;"	I
+shoot	tests/star-battle/js/scenes/play.js	/^    shoot() {$/;"	m	class:Play
+shootEnemy	tests/star-battle/js/config/config.js	/^        shootEnemy: 5,$/;"	p	property:config.scoreConfig
+shootFriend	tests/star-battle/js/config/config.js	/^        shootFriend: -10,$/;"	p	property:config.scoreConfig
+shootMeteorite	tests/star-battle/js/config/config.js	/^        shootMeteorite: 10,$/;"	p	property:config.scoreConfig
+show	tests/star-battle/js/class/scene.js	/^    show() {$/;"	m	class:Scene
 size	lib/libconfpp/src/config.cpp	/^int ws_config::size(){$/;"	f	class:ws_config	typeref:typename:int
-socket types	notes.md	/^## socket types$/;"	s	chapter:it all starts with a socket
 socket_listen	src/monitor.cpp	/^void socket_listen(ws_port &cport, ws_config &config, int table_idx){$/;"	f	typeref:typename:void
-sockets API review	notes.md	/^## sockets API review$/;"	s	chapter:it all starts with a socket
+some	tests/star-battle/js/scenes/rank.js	/^        const some = (a, b) => {$/;"	f	method:Rank.rank
+speak	tests/star-battle/js/scenes/play.js	/^    speak(){$/;"	m	class:Play
+speed	tests/star-battle/js/config/config.js	/^            speed: 4,$/;"	p	variable:o
+stars	tests/star-battle/js/scenes/play.js	/^        this.stars = {$/;"	p	method:Play.initData
+start	tests/star-battle/index.html	/^            <div id="start" class="column">$/;"	I
+start	tests/star-battle/js/game.js	/^            start: new Start('#start', this),$/;"	p	property:Game.initScenes.scenes
+start	tests/star-battle/js/game.js	/^    start() {$/;"	m	class:Game
+start	tests/star-battle/js/scenes/play.js	/^    start() {$/;"	m	class:Play
+start-btn	tests/star-battle/index.html	/^                <button id="start-btn" class="btn">$/;"	I
 status	includes/connection.hpp	/^	ws_status	status;$/;"	m	struct:ws_delivery	typeref:typename:ws_status
+status	tests/star-battle/js/utils/utils.js	/^    const status = start < end;$/;"	C
 strip_str	src/multipart.cpp	/^void strip_str(std::string &str, char x){$/;"	f	typeref:typename:void
 strschr	lib/libconfpp/src/common.cpp	/^int	strschr(std::string s, int c)$/;"	f	typeref:typename:int
+style	tests/star-battle/js/utils/utils.js	/^const style = (el, styleObj) => {$/;"	f
+submit-btn	tests/star-battle/index.html	/^                <button id="submit-btn" class="btn" disabled>$/;"	I
+table	tests/star-battle/css/style.css	/^table {$/;"	s
 table_name	lib/libconfpp/includes/config.h	/^	std::string	table_name;$/;"	m	struct:ws_config_table	typeref:typename:std::string
 tables	lib/libconfpp/includes/config.h	/^	std::vector<ws_config_container *> tables;$/;"	m	struct:ws_config_table	typeref:typename:std::vector<ws_config_container * >
+tbody tr	tests/star-battle/css/common.css	/^tbody tr {$/;"	s
 test	Makefile	/^test : re$/;"	t
 test	lib/libconfpp/Makefile	/^test : re $/;"	t
-upload_dir	tests/default.conf	/^upload_dir = "\/home\/lmongol\/Projects\/wibsirv\/tests\/uploads"$/;"	k	section:media_server
-upload_dir	tests/default.conf	/^upload_dir = "\/tmp"$/;"	k	section:main_server
+text	tests/star-battle/js/class/element.js	/^            text: this.text,$/;"	p	variable:anonymousObject049acbdf0305
+time	tests/star-battle/index.html	/^                                <span id="time">00<\/span>$/;"	I
+time	tests/star-battle/js/scenes/rank.js	/^            time,$/;"	p	variable:
+time	tests/star-battle/js/utils/utils.js	/^    const time = setInterval(() => {$/;"	C
+toggleMute	tests/star-battle/js/scenes/play.js	/^        const toggleMute = ()=>{$/;"	f	method:Play.event
+togglePause	tests/star-battle/js/scenes/play.js	/^        const togglePause = ()=>{$/;"	f	method:Play.event
+toggleScene	tests/star-battle/js/game.js	/^    toggleScene(scene) {$/;"	m	class:Game
+uninstall	tests/star-battle/js/class/scene.js	/^    uninstall(){$/;"	m	class:Scene
+uninstall	tests/star-battle/js/scenes/play.js	/^    uninstall() {$/;"	m	class:Play
+up	tests/star-battle/js/class/player.js	/^    up() {$/;"	m	class:Player
+update	tests/star-battle/js/class/bullet.js	/^    update() {$/;"	m	class:Bullet
+update	tests/star-battle/js/class/cooldown.js	/^    update() {$/;"	m	class:Cooldown
+update	tests/star-battle/js/class/element.js	/^    update() {$/;"	m	class:Element
+update	tests/star-battle/js/class/enemy.js	/^    update() {$/;"	m	class:Enemy
+update	tests/star-battle/js/class/friend.js	/^    update() {$/;"	m	class:Friend
+update	tests/star-battle/js/class/fuel.js	/^    update() {$/;"	m	class:Fuel
+update	tests/star-battle/js/class/meteorite.js	/^    update() {$/;"	m	class:Meteorite
+update	tests/star-battle/js/class/plane.js	/^    update() {$/;"	m	class:Plane
+update	tests/star-battle/js/class/star.js	/^    update() {$/;"	m	class:Star
+update	tests/star-battle/js/scenes/play.js	/^    update() {$/;"	m	class:Play
+update	tests/star-battle/js/utils/utils.js	/^    update = (key, data) => {$/;"	f
+updateBullets	tests/star-battle/js/scenes/play.js	/^    updateBullets() {$/;"	m	class:Play
+updateElements	tests/star-battle/js/scenes/play.js	/^    updateElements() {$/;"	m	class:Play
+updateEmenys	tests/star-battle/js/scenes/play.js	/^    updateEmenys() {$/;"	m	class:Play
+updateFontSize	tests/star-battle/js/scenes/play.js	/^    updateFontSize(){$/;"	m	class:Play
+updateFriends	tests/star-battle/js/scenes/play.js	/^    updateFriends() {$/;"	m	class:Play
+updateFuel	tests/star-battle/js/scenes/play.js	/^    updateFuel(num = 0) {$/;"	m	class:Play
+updateFuels	tests/star-battle/js/scenes/play.js	/^    updateFuels() {$/;"	m	class:Play
+updateScore	tests/star-battle/js/scenes/play.js	/^    updateScore(num = 0) {$/;"	m	class:Play
+updateStars	tests/star-battle/js/scenes/play.js	/^    updateStars() {$/;"	m	class:Play
+updateTime	tests/star-battle/js/scenes/play.js	/^    updateTime() {$/;"	m	class:Play
+updateView	tests/star-battle/js/scenes/over.js	/^    updateView(){$/;"	m	class:Over
+updateing	tests/star-battle/js/scenes/play.js	/^    updateing(arr, callback) {$/;"	m	class:Play
+updateshoot	tests/star-battle/js/scenes/play.js	/^    updateshoot() {$/;"	m	class:Play
+upload_dir	default.conf	/^upload_dir = "\/home\/lmongol\/Projects\/wibsirv\/tests\/uploads"$/;"	k	section:media_server
 val	lib/libconfpp/includes/config.h	/^	std::string	val;$/;"	m	struct:ws_config_container	typeref:typename:std::string
+val	tests/star-battle/js/config/config.js	/^            val : 16,$/;"	p	property:config.game.fontSize
+w	tests/star-battle/js/class/bullet.js	/^            w: this.w,$/;"	p	variable:anonymousObject5ed8dfbd0105
+w	tests/star-battle/js/class/element.js	/^                w: this.w,$/;"	p	variable:anonymousObject049acbdf0205
+w	tests/star-battle/js/class/plane.js	/^            w: this.w,$/;"	p	variable:anonymousObject757cefa50105
+w	tests/star-battle/js/class/player.js	/^            'w': this.up,$/;"	p	variable:Player.event.keys
+w	tests/star-battle/js/config/config.js	/^            w: 70,$/;"	p	variable:o
+w	tests/star-battle/js/config/config.js	/^        w: 960,$/;"	p	property:config.game
 warn	src/log.cpp	/^void ws_log::warn(std::string msg){$/;"	f	class:ws_log	typeref:typename:void
 webserver	README.md	/^# webserver$/;"	c
 whoami	lib/libconfpp/tests/lib.conf	/^whoami               =            "call it off"$/;"	k
 whoami	lib/libconfpp/tests/lib.conf	/^whoami = "dont fucking call it off"$/;"	k
+width	tests/star-battle/js/game.js	/^                width: config.game.w + 'px',$/;"	p	variable:Game.initSize.anonymousObject9e4e19ea0105
 ws_config	lib/libconfpp/includes/config.h	/^class ws_config {$/;"	c
 ws_config	lib/libconfpp/src/config.cpp	/^ws_config::ws_config(){$/;"	f	class:ws_config
 ws_config	lib/libconfpp/src/config.cpp	/^ws_config::ws_config(ws_config &x){$/;"	f	class:ws_config
@@ -362,7 +751,28 @@ ws_port	includes/connection.hpp	/^typedef struct ws_port{$/;"	s
 ws_port	includes/connection.hpp	/^}ws_port;$/;"	t	typeref:struct:ws_port
 ws_status	includes/connection.hpp	/^typedef enum ws_status {$/;"	g
 ws_status	includes/connection.hpp	/^} ws_status;$/;"	t	typeref:enum:ws_status
+x	tests/star-battle/js/class/bullet.js	/^            x: this.x,$/;"	p	variable:anonymousObject5ed8dfbd0105
+x	tests/star-battle/js/class/element.js	/^                x: this.x,$/;"	p	variable:anonymousObject049acbdf0205
+x	tests/star-battle/js/class/element.js	/^            x: this.x + this.w \/ 2,$/;"	p	variable:anonymousObject049acbdf0405
+x	tests/star-battle/js/class/element.js	/^            x: this.x,$/;"	p	variable:anonymousObject049acbdf0305
+x	tests/star-battle/js/class/plane.js	/^            x: this.x,$/;"	p	variable:anonymousObject757cefa50105
+x	tests/star-battle/js/config/config.js	/^            x: 0,$/;"	p	variable:o
+xCoolision	tests/star-battle/js/scenes/play.js	/^        var xCoolision = (a, b) => {$/;"	f	method:Play.collision
+y	tests/star-battle/js/class/bullet.js	/^            y: this.y,$/;"	p	variable:anonymousObject5ed8dfbd0105
+y	tests/star-battle/js/class/element.js	/^                y: this.y,$/;"	p	variable:anonymousObject049acbdf0205
+y	tests/star-battle/js/class/element.js	/^            y : this.y,$/;"	p	variable:anonymousObject049acbdf0305
+y	tests/star-battle/js/class/element.js	/^            y: this.y + this.h \/ 2,$/;"	p	variable:anonymousObject049acbdf0405
+y	tests/star-battle/js/class/plane.js	/^            y: this.y,$/;"	p	variable:anonymousObject757cefa50105
+y	tests/star-battle/js/config/config.js	/^            y: 0,$/;"	p	variable:o
+yCoolision	tests/star-battle/js/scenes/play.js	/^        var yCoolision = (a, b) => {$/;"	f	method:Play.collision
 ~Request	src/RequestParsing.cpp	/^Request::~Request(){$/;"	f	class:Request
 ~Response	src/Response.cpp	/^Response::~Response(){$/;"	f	class:Response
 ~ws_config	lib/libconfpp/src/config.cpp	/^ws_config::~ws_config(){$/;"	f	class:ws_config
 ~ws_log	src/log.cpp	/^ws_log::~ws_log(){$/;"	f	class:ws_log
+Автор	tests/star-battle/README-RU.md	/^## Автор$/;"	s	chapter:RU
+Вывод	tests/star-battle/README-RU.md	/^## Вывод$/;"	s	chapter:RU
+Демо версия	tests/star-battle/README-RU.md	/^## Демо версия$/;"	s	chapter:RU
+Правила игры	tests/star-battle/README-RU.md	/^## Правила игры$/;"	s	chapter:RU
+作者	tests/star-battle/README-CN.md	/^## 作者$/;"	s
+最后	tests/star-battle/README-CN.md	/^## 最后$/;"	s
+游戏规则	tests/star-battle/README-CN.md	/^## 游戏规则$/;"	s

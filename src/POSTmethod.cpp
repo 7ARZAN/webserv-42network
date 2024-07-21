@@ -1,4 +1,5 @@
 #include "../includes/Response.hpp"
+#include "../includes/handleCGI.hpp"
 #include "../includes/multipart.hpp"
 #include "../includes/webserver.hpp"
 
@@ -14,9 +15,9 @@ void	Response::POSTFILE(std::string boundary){
 	}
 	if (upload_dir.back() != '/')
 		upload_dir += "/";
-	req.setBoundary(boundary);
+	req.setboundary(boundary);
 	req.parse_mbody(_RequestPacket->getBody());
-	std::vector<data_chunk>	chunks = req.getChunks();
+	std::vector<data_chunk>	chunks = req.get_chunks();
 	while (++i < (int) chunks.size()){
 		std::map<std::string, std::string>::iterator it = chunks[i].propreties.begin();
 		if (chunks[i].propreties.find("filename") != chunks[i].propreties.end()){
@@ -37,7 +38,14 @@ void	Response::POST(){
 	multipart req;
 	std::vector<std::string> boundary;
 	std::string content_type = _RequestPacket->getMetadata("Content-Type");
+	std::string rootpath = search_val_table(_RequestPacket->getConfig(), "root_dir");
+	std::string FilePath = rootpath + _RequestPacket->getUri();
+	handleCGI	cgi(this, FilePath);
 
+	if (isCGI(FilePath) == true){
+		cgi.execCGI();
+		return ;
+	}
 	if (strncmp(content_type.c_str(), "multipart/form-data", 19) == 0){
 		boundary = ohmysplit(content_type.substr(content_type.find("; ") + 2), "=");
 		if (boundary[0] == "boundary"){

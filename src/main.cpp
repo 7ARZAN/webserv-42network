@@ -7,48 +7,40 @@ ws_log					logx;
 bool					dirlist = false;
 
 
-std::map<std::string, std::string> cache_MimeTypes(){
-	std::vector<std::string>	Types;
-	std::vector<std::string>	Mime;
-	std::map<std::string, std::string> MimeTypes;
-	int	i;
-
-	i = -1;
-	Mime = ohmysplit(MIME, "|");
-	Types = ohmysplit(TYPE, "|");
-	while (++i < (int) Types.size()){
-		std::pair<std::string, std::string> x(Types[i], Mime[i]);
+std::map<std::string, std::string> cache_mime_types(){
+	std::vector<std::string>	types = ohmysplit(TYPE, "|");
+	std::vector<std::string>	mime = ohmysplit(MIME, "|");
+	std::map<std::string, std::string> mime_types;
+	int i = -1;
+	while (++i < (int) types.size()){
+		std::pair<std::string, std::string> x(types[i], mime[i]);
 		mime_types.insert(x);
 	}
 	return (mime_types);
 }
 
-std::map<int, std::string> cache_StatusCode(){
-	std::vector<std::string>	codes;
-	std::vector<std::string>	msg;
-	std::map<int, std::string>	status;
-	int	i;
-
-	i = -1;
-	codes = ohmysplit(HTTP_CODES, "|");
-	msg = ohmysplit(HTTP_MSG, "|");
-	while (++i < (int) codes.size()){
-		std::pair<int, std::string> x(atoi(codes[i].c_str()), msg[i]);
-		status.insert(x);
+std::map<int, std::string> cache_http_status(){
+	std::vector<std::string>	http_codes = ohmysplit(HTTP_CODES, "|");
+	std::vector<std::string>	http_msg = ohmysplit(HTTP_MSG, "|");
+	std::map<int, std::string> http_status;
+	int i = -1;
+	while (++i < (int) http_codes.size()){
+		std::pair<int, std::string> x(atoi(http_codes[i].c_str()), http_msg[i]);
+		http_status.insert(x);
 	}
-	return (status);
+	return (http_status);
 }
 
-int main(int ac, char **av){
-	if (ac < 2){
-		std::cerr << "Usage : " << av[0] << " <ws_configuration.conf>" << std::endl;
+int main(int argc, char **argv){
+	if (argc < 2){
+		std::cerr << "Usage : " << argv[0] << " <ws_configuration.conf>" << std::endl;
 		return (EXIT_FAILURE);
 	}
-	std::string content = read_file(av[1]);
+	std::string content = read_file(argv[1]);
 	if (content == "")
 		return (EXIT_FAILURE);
-	http_status = cache_StatusCode();
-	mime_types = cache_MimeTypes();
+	http_status = cache_http_status();
+	mime_types = cache_mime_types();
 
 	ws_config conf;
 	conf.parse_string(content);
@@ -64,7 +56,6 @@ int main(int ac, char **av){
 		connections.accept_connections();
 	} catch (std::exception &e){
 		logx.error(e.what());
-		return (EXIT_FAILURE);
+		std::exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
 }

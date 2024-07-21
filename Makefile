@@ -1,13 +1,14 @@
-CFLAGS = -Wall -Wextra -Werror -Wformat=2 -flto -ffast-math -pedantic -ggdb
+CFLAGS = -Wall -Wextra -Werror -Wformat=2 -ffast-math -pedantic -ggdb -g
 CC = g++
 NAME = webserver
 LIBCONFPP = lib/libconfpp/libconfpp.a
 OBJ = build/main.o build/connection.o build/RequestParsing.o build/log.o build/monitor.o \
       build/Response.o build/DELETEmethod.o build/GETmethod.o build/POSTmethod.o \
-      build/multipart.o
+      build/multipart.o build/handleCGI.o
 
 SRC = src/main.cpp src/connection.cpp src/RequestParsing.cpp src/log.cpp src/monitor.cpp \
-      src/Response.cpp src/GETmethod.cpp src/POSTmethod.cpp src/DELETEmethod.cpp src/multipart.cpp
+      src/Response.cpp src/GETmethod.cpp src/POSTmethod.cpp src/DELETEmethod.cpp src/multipart.cpp \
+      src/handleCGI.cpp \
 
 INCLUDES = lib/libconfpp/includes
 

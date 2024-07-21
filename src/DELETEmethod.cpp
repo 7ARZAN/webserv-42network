@@ -1,18 +1,18 @@
 #include "../includes/Response.hpp"
 #include "../includes/webserver.hpp"
 
-bool is_dir(std::string Path){
-	struct stat Path_stat;
-	if (stat(Path.c_str(), &Path_stat) == -1)
+bool is_dir(std::string path){
+	struct stat path_stat;
+	if (stat(path.c_str(), &path_stat) == -1)
 		return (false);
-	if (Path_stat.st_mode & S_IFDIR)
+	if (path_stat.st_mode & S_IFDIR)
 		return (true);
 	return (false);
 
 }
 
-int delete_dir(std::string filePath) {
-	DIR *dir = opendir(filePath.c_str());
+int delete_dir(std::string filepath) {
+	DIR *dir = opendir(filepath.c_str());
 	struct dirent *dir_elems;
 	std::string element;
 
@@ -22,7 +22,7 @@ int delete_dir(std::string filePath) {
 		std::string elem = std::string(dir_elems->d_name);
 		if (elem == "." || elem == "..")
 			continue;
-		element = filePath + "/" + elem;
+		element = filepath + "/" + elem;
 		if (is_dir(element) == true){
 			if(delete_dir(element) == -1){
 				closedir(dir);
@@ -36,7 +36,7 @@ int delete_dir(std::string filePath) {
 		}
 	}
 	closedir(dir);
-	if (rmdir(filePath.c_str()) == -1){
+	if (rmdir(filepath.c_str()) == -1){
 		return (-1);
 	}
 	return (0);
@@ -51,11 +51,11 @@ bool	isExist(const std::string &fullPath){
 }
 
 void	Response::DELETE(){
-	std::string 	rootPath;
+	std::string 	rootpath;
 	std::string	FilePath;
 
-	rootPath = search_val_table(_RequestPacket->getConfig(), "root_dir");
-	FilePath = rootPath + _RequestPacket->getUri();
+	rootpath = search_val_table(_RequestPacket->getConfig(), "root_dir");
+	FilePath = rootpath + _RequestPacket->getUri();
 
 	if (isExist(FilePath) == false){
 		setStatusCode(404);
@@ -65,8 +65,8 @@ void	Response::DELETE(){
 		setStatusCode(409);
 		return;
 	}
-	logx.info("[DELETE] " + FilePath);
-	//CGI check [TODO] !
+	logx.info("deleting file " + FilePath);
+
 	// still need to add some checking here for perms
 	if (delete_dir(FilePath) == -1){
 		if (errno == 1)

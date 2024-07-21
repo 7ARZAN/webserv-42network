@@ -1,31 +1,28 @@
 #include "../includes/multipart.hpp"
 #include <string.h>
 
-multipart::multipart(std::string boundaries){
-	boundary = "--" + boundaries;
+multipart::multipart(std::string boundary){
+	this->boundary = "--" + boundary;
 }
 
-void multipart::setBoundary(std::string boundaries){
-	boundary = "--" + boundaries;
+void multipart::setboundary(std::string boundary){
+	this->boundary = "--" + boundary;
 }
 
-void strip_str(std::string &str, char Char2Strip){
-	int	i;
-
-	i = 0;
-	while (str[i] == Char2Strip){
+void strip_str(std::string &str, char x){
+	int i = 0;
+	while (str[i] == x){
 		str.erase(i, i + 1);
 	}
 	i = str.size() - 1;
-	while (str[i] == Char2Strip){
+	while (str[i] == x){
 		str.erase(i, i + 1);
 		i--;
 	}
 }
 
 std::string find_and_delete(std::string &haystack, std::string needle){
-	std::string	farm;
-
+	std::string farm;
 	if (haystack.find(needle) == std::string::npos){
 		return (std::string(""));
 	}
@@ -100,18 +97,11 @@ void multipart::parse_mbody(std::string mbody){
 			this->parse_attributes(chunk_body);
 			chunks.back().content = chunk_body;
 		}
-		else{
-			throw (std::runtime_error("corrupted multipart body"));
-		}
 	}
-	if (mbody != "--\r\n"){
-		throw (std::runtime_error("corrupted multipart body"));
-	}
-
 }
 
 
-std::vector<data_chunk> multipart::getChunks(){
+std::vector<data_chunk> multipart::get_chunks(){
 	return (chunks);
 }
 

@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/20 16:59:34 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/07/21 05:26:03 by lmongol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	Response::_GenerateHEAD(){
 	_HEAD += "\r\n";
 }
 
-std::string Response::RenderResponse(){
+std::string Response::render_response(){
 	std::string resp;
 	if (_HEAD.empty())
 		_GenerateHEAD();
@@ -75,6 +75,7 @@ bool	Response::setStatusCode(int code){
 	if (http_status.find(code) == http_status.end())
 		return (false);
 	_statusCode = std::to_string(code) + " " + http_status[code];
+	setBody(http_status[code]);
 	return (true);
 }
 
@@ -111,27 +112,6 @@ void	Response::handleResponse(){
 		GET();
 	else if (_RequestPacket->getMethod() == "DELETE")
 		DELETE();
-}
-
-bool	Response::FileReader(const std::string &path){
-	std::fstream	file;
-	size_t			bytes;
-	char			buffer[1024];
-
-	if (path.empty())
-		return (false);
-	file.open(path, std::ios::in);
-	if (!file.is_open())
-		return (false);
-	while (!file.eof()){
-		file.read(buffer, 1024);
-		bytes = file.gcount();
-		_Body.append(buffer, bytes);
-	}
-	file.close();
-	setMetadata("Content-Type", mime_types[_GetFileExtension(path)]);
-	setMetadata("Content-Length", std::to_string(_Body.size()));
-	return (true);
 }
 
 Response::Response(Request *req){

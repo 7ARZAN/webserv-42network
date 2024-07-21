@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:45:14 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/20 16:59:41 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/07/21 07:40:09 by tarzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <fstream>
+# include <string.h>
+# include <vector>
 # include <unistd.h>
 # include "RequestParsing.hpp"
 
@@ -56,15 +59,15 @@ class	Response
 		void	setRequest(Request &request);
 		Request	*getRequest();
 
-		bool	FileReader(const std::string &path);
-
 		void	handleResponse();
 
-		std::string	RenderResponse();
+		std::string	render_response();
 		void		DELETE();
 		void		GET();
 		void		POST();
 		void		POSTFILE(std::string boundary);
+
+		//bool	isBusy();
 };
 
 bool	isExist(const std::string &fullPath);
