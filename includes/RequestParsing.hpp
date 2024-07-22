@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:50 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/21 06:49:50 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/21 14:24:17 by tarzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ class	Request
 		std::string	_Uri;
 		std::string	_Version;
 		std::string	_Body;
-		std::string	query;
+		std::string	_Query;
 		std::map<std::string, std::string>	_Metadata;
-		std::map<std::string, std::string>	_cookies;
+		std::map<std::string, std::string>	_Cookies;
+		std::map<std::string, std::string>	_Sessions;
 
 	public:
 		Request(ws_delivery *request, ws_delivery *response, ws_config_table *config);
@@ -48,10 +49,12 @@ class	Request
 		void	setVersion(const std::string &version);
 		void	setMetadata(const std::string &key, const std::string &value);
 		void	setCookies(const std::string &key, const std::string &value);
+		void	setSessions(const std::string &key, const std::string &value);
 
 		bool	parseRequest();
 		bool	parseMetadata(std::stringstream &header);
 		bool	parseCookies();
+		bool	parseSessions();
 
 		std::string	getquery();
 		std::string	getMethod() const;
@@ -61,6 +64,7 @@ class	Request
 		std::string	getVersion() const;
 		std::string	getMetadata(const std::string &key) const;
 		std::map<std::string, std::string>	getCookies() const;
+		std::map<std::string, std::string>	getSessions() const;
 };
 
 

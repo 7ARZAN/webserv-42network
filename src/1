@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/21 14:49:57 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/21 14:41:30 by tarzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,42 +63,27 @@ void	Response::_GenerateHEAD(){
 	_HEAD += "\r\n";
 }
 
-static void	convert2Hex(std::string &str){
-	std::string	converted;
-	std::string	hex = "0123456789ABCDEF";
-
-	for (size_t i = 0; i < str.size(); i++){
-		if (isalnum(str[i]) || str[i] == '-' || str[i] == '_' || str[i] == '.' || str[i] == '~')
-			converted += str[i];
-		else{
-			converted += '%';
-			converted += hex[str[i] / 16];
-			converted += hex[str[i] % 16];
-		}
-	}
-	str = converted;
-}
-
 void	Response::_GenerateCookie(){
 	std::map<std::string, std::string>::iterator	it;
 	std::string	cookie;
+	std::string	cookie_name;
+	std::string	cookie_value;
 
 	it = _RequestPacket->getCookies().begin();
 	while (it != _RequestPacket->getCookies().end()){
-		cookie += it->first + "=" + it->second + "; ";
+		cookie_name = it->first;
+		cookie_value = it->second;
+		cookie = cookie_name + "=" + cookie_value;
+		setMetadata("Set-Cookie", cookie);
 		it++;
 	}
-	if (!cookie.empty())
-		cookie = cookie.substr(0, cookie.size() - 2);
-	convert2Hex(cookie);
-	setMetadata("Set-Cookie", cookie);
-	//we should add this function to the function that will generate the response packet
-	//in our case it's _GenerateResponsePacket
+	_RequestPacket->getCookies().clear();
+	std::cout << "cookie generated" << std::endl;
+	std::cout << _Metadata["Set-Cookie"] << std::endl;
 }
 
 std::string Response::render_response(){
-	std::string	resp;
-
+	std::string resp;
 	if (_HEAD.empty())
 		_GenerateHEAD();
 	resp = _HEAD + _Body;
@@ -132,6 +117,8 @@ bool	Response::Redirect(const std::string &uri, bool isPermanent){
 	setMetadata("Connection", "close");
 	setBody("");
 	_GenerateHEAD();
+	_GenerateCookie();
+	// _GenerateResponsePacket();
 	return (true);
 }
 

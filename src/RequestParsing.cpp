@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 01:51:39 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/21 10:40:35 by lmongol          ###   ########.fr       */
+/*   Updated: 2024/07/21 14:39:04 by tarzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	Request::setMetadata(const std::string &key, const std::string &value){
 }
 
 void	Request::setCookies(const std::string &key, const std::string &value){
-	_cookies[key] = value;
+	_Cookies[key] = value;
 }
 
 std::string Request::getquery(){
-	return (this->query);
+	return (_Query);
 }
 
 bool	Request::parseRequest(){
@@ -105,7 +105,7 @@ bool	Request::parseRequest(){
 		if (query.size() != 2)
 			throw (Response(400));
 		setUri(correct_Format(query[0]));
-		this->query = query[1];
+		this->_Query = query[1];
 	}
 	else{
 		setUri(correct_Format(list[1]));
@@ -177,7 +177,24 @@ bool	Request::parseCookies(){
 	while (++index < list.size()){
 		cookie = ohmysplit(list[index], "=");
 		if (cookie.size() == 2)
-			_cookies[cookie[0]] = cookie[1];
+			_Cookies[cookie[0]] = cookie[1];
+	}
+	return (true);
+}
+
+bool	Request::parseSessions(){
+	std::string	sessions;
+	std::vector<std::string>	list;
+	std::vector<std::string>	session;
+	size_t	index;
+
+	index = -1;
+	sessions = getMetadata("Session");
+	list = ohmysplit(sessions, "; ");
+	while (++index < list.size()){
+		session = ohmysplit(list[index], "=");
+		if (session.size() == 2)
+			_Cookies[session[0]] = session[1];
 	}
 	return (true);
 }
@@ -205,7 +222,11 @@ std::string	Request::getMetadata(const std::string &key) const{
 }
 
 std::map<std::string, std::string>	Request::getCookies() const{
-	return (_cookies);
+	return (_Cookies);
+}
+
+std::map<std::string, std::string>	Request::getSessions() const{
+	return (_Sessions);
 }
 
 Request::Request(ws_delivery *request, ws_delivery *response, ws_config_table *table){

@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:45:14 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/21 07:40:09 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/21 14:47:15 by tarzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ class	Response
 
 		std::string	_GetPacketDate();
 		void	_GenerateHEAD();
+		void	_GenerateCookie();
 		std::string	_GetFileExtension(const std::string &path);
 
 	public:
@@ -53,7 +54,6 @@ class	Response
 		bool	setMetadata(const std::string &key, const std::string &value);
 		bool	setBody(const std::string &informations);
 		
-		bool	sendResponse(int fd);
 		bool	Redirect(const std::string &uri, bool isPermanent);
 
 		void	setRequest(Request &request);
@@ -66,8 +66,6 @@ class	Response
 		void		GET();
 		void		POST();
 		void		POSTFILE(std::string boundary);
-
-		//bool	isBusy();
 };
 
 bool	isExist(const std::string &fullPath);

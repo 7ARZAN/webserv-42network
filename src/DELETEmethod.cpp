@@ -2,7 +2,8 @@
 #include "../includes/webserver.hpp"
 
 bool is_dir(std::string path){
-	struct stat path_stat;
+	struct stat	path_stat;
+
 	if (stat(path.c_str(), &path_stat) == -1)
 		return (false);
 	if (path_stat.st_mode & S_IFDIR)
@@ -12,9 +13,9 @@ bool is_dir(std::string path){
 }
 
 int delete_dir(std::string filepath) {
-	DIR *dir = opendir(filepath.c_str());
-	struct dirent *dir_elems;
-	std::string element;
+	DIR	*dir = opendir(filepath.c_str());
+	struct dirent	*dir_elems;
+	std::string	element;
 
 	if (dir == NULL)
 		return (-1);
@@ -28,7 +29,9 @@ int delete_dir(std::string filepath) {
 				closedir(dir);
 				return (-1);
 			}
-		} else {
+		}
+		else
+		{
 			if (remove(element.c_str()) == -1){
 				closedir(dir);
 				return (-1);
@@ -36,9 +39,8 @@ int delete_dir(std::string filepath) {
 		}
 	}
 	closedir(dir);
-	if (rmdir(filepath.c_str()) == -1){
+	if (rmdir(filepath.c_str()) == -1)
 		return (-1);
-	}
 	return (0);
 }
 
@@ -66,8 +68,6 @@ void	Response::DELETE(){
 		return;
 	}
 	logx.info("deleting file " + FilePath);
-
-	// still need to add some checking here for perms
 	if (delete_dir(FilePath) == -1){
 		if (errno == 1)
 			setStatusCode(403);

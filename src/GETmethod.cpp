@@ -3,8 +3,8 @@
 #include "../includes/webserver.hpp"
 
 std::string	read_file(std::string filename){
-	std::ifstream conffile(filename);
-	std::ostringstream fcontent;
+	std::ifstream	conffile(filename);
+	std::ostringstream	fcontent;
 
 	if (!conffile.is_open()){
 		logx.error("cant open the " + filename);
@@ -15,17 +15,18 @@ std::string	read_file(std::string filename){
 }
 
 std::string search_replace(std::string str, std::string a, std::string b) {
-	size_t pos;
-	std::string repl = str;
-	while ((pos = repl.find(a)) != std::string::npos){
+	size_t		pos;
+	std::string	repl;
+
+	repl = str;
+	while ((pos = repl.find(a)) != std::string::npos)
 		repl.replace(pos, a.length(), b);
-	}
 	return (repl);
 }
 
 std::string	list_dir(std::string path){
-	DIR *dir = opendir(path.c_str());
-	struct dirent *dirfiles;
+	DIR	*dir = opendir(path.c_str());
+	struct dirent	*dirfiles;
 	std::string	response;
 
 	if (dir == NULL)
@@ -41,8 +42,8 @@ std::string	list_dir(std::string path){
 
 
 void	Response::GET(){
-	std::string rootpath = search_val_table(_RequestPacket->getConfig(), "root_dir");
-	std::string FilePath = rootpath + _RequestPacket->getUri();
+	std::string	rootpath = search_val_table(_RequestPacket->getConfig(), "root_dir");
+	std::string	FilePath = rootpath + _RequestPacket->getUri();
 	handleCGI	cgi(this, FilePath);
 
 	if (isExist(FilePath) == false){
@@ -61,7 +62,8 @@ void	Response::GET(){
 		}
 		if (isExist(FilePath + "index.html") == true)
 			FilePath += "index.html";
-		else {
+		else
+		{
 			try {
 				if (dirlist == false)
 					throw (false);
@@ -72,7 +74,9 @@ void	Response::GET(){
 			}
 			return;
 		}
-	}else{
+	}
+	else
+	{
 		_Body = read_file(FilePath);
 		if (_Body.empty() == true && errno == EACCES){
 			setStatusCode(401);
@@ -80,5 +84,6 @@ void	Response::GET(){
 		}
 		setMetadata("Content-Type", mime_types[_GetFileExtension(FilePath)]);
 	}
+	setStatusCode(200);
 	setMetadata("Content-Length", std::to_string(_Body.size()));
 }
