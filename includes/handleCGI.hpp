@@ -9,7 +9,8 @@ typedef enum CGI_TYPE{
 	PHP,
 	PL,
 	RB,
-	CGI
+	CGI,
+	NOCGI
 }CGI_TYPE;
 
 

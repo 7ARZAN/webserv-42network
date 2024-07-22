@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 01:51:39 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/21 14:39:04 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:57:44 by mlalama          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ void	Request::setMetadata(const std::string &key, const std::string &value){
 }
 
 void	Request::setCookies(const std::string &key, const std::string &value){
-	_Cookies[key] = value;
+	_cookies[key] = value;
 }
 
 std::string Request::getquery(){
-	return (_Query);
+	return (this->query);
 }
 
 bool	Request::parseRequest(){
@@ -105,7 +105,7 @@ bool	Request::parseRequest(){
 		if (query.size() != 2)
 			throw (Response(400));
 		setUri(correct_Format(query[0]));
-		this->_Query = query[1];
+		this->query = query[1];
 	}
 	else{
 		setUri(correct_Format(list[1]));
@@ -113,9 +113,12 @@ bool	Request::parseRequest(){
 	if (_Uri.size() > PATH_MAX)
 		throw (Response(415));
 	setVersion(correct_Format(list[2]));
-	parseMetadata(header);
-	if (getMetadata("Content-Length").empty() == true && _Method == "POST")
+	if (parseMetadata(header) == false)
+		throw (Response(400));
+	if (getMetadata("Content-Length").empty() == true && _Method == "POST"){
+		logx.error(getMetadata("Accept"));
 		throw (Response(411));
+	}
 
 	body_size = std::atoi(getMetadata("Content-Length").c_str());
 
@@ -152,15 +155,6 @@ bool	Request::parseMetadata(std::stringstream &header){
 		if (list.size() != 2)
 			return (false);
 		setMetadata(correct_Format(list[0]), correct_Format(list[1]));
-		if (list[0] == "Content-Type"){
-			list = ohmysplit(list[1], "; ");
-			if (list.size() != 2)
-				return (false);
-			list = ohmysplit(list[1], "=");
-			if (list.size() != 2)
-				return (false);
-			setMetadata(correct_Format(list[0]), correct_Format(list[1]));
-		}
 	}
 	return (true);
 }
@@ -177,24 +171,7 @@ bool	Request::parseCookies(){
 	while (++index < list.size()){
 		cookie = ohmysplit(list[index], "=");
 		if (cookie.size() == 2)
-			_Cookies[cookie[0]] = cookie[1];
-	}
-	return (true);
-}
-
-bool	Request::parseSessions(){
-	std::string	sessions;
-	std::vector<std::string>	list;
-	std::vector<std::string>	session;
-	size_t	index;
-
-	index = -1;
-	sessions = getMetadata("Session");
-	list = ohmysplit(sessions, "; ");
-	while (++index < list.size()){
-		session = ohmysplit(list[index], "=");
-		if (session.size() == 2)
-			_Cookies[session[0]] = session[1];
+			_cookies[cookie[0]] = cookie[1];
 	}
 	return (true);
 }
@@ -222,11 +199,7 @@ std::string	Request::getMetadata(const std::string &key) const{
 }
 
 std::map<std::string, std::string>	Request::getCookies() const{
-	return (_Cookies);
-}
-
-std::map<std::string, std::string>	Request::getSessions() const{
-	return (_Sessions);
+	return (_cookies);
 }
 
 Request::Request(ws_delivery *request, ws_delivery *response, ws_config_table *table){

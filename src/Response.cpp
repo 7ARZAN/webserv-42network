@@ -6,12 +6,131 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/21 14:49:57 by tarzan           ###   ########.fr       */
+/*   Updated: 2024/07/22 05:01:20 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Response.hpp"
 #include "../includes/webserver.hpp"
+
+Cookie::Cookie(){
+	_name = "";
+	_value = "";
+	_expires = "";
+	_path = "";
+	_domain = "";
+	_secure = "";
+	_httpOnly = "";
+}
+
+Cookie::~Cookie(){
+}
+
+static std::string	generateRandomString(int length){
+	std::string		str;
+	std::string		charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	int				charset_len = charset.size();
+
+	for (int i = 0; i < length; i++)
+		str += charset[rand() % charset_len];
+	return (str);
+}
+
+bool	Cookie::setName(const std::string &name){
+	if (name.empty())
+		return (false);
+	_name = generateRandomString(10);
+	return (true);
+}
+
+bool	Cookie::setValue(const std::string &value){
+	if (value.empty())
+		return (false);
+	_value = generateRandomString(10);
+	return (true);
+}
+
+bool	Cookie::setExpires(const std::string &expires){
+	if (expires.empty())
+		return (false);
+	_expires = generateRandomString(10);
+	return (true);
+}
+
+bool	Cookie::setPath(const std::string &path){
+	if (path.empty())
+		return (false);
+	_path = generateRandomString(10);
+	return (true);
+}
+
+bool	Cookie::setDomain(const std::string &domain){
+	if (domain.empty())
+		return (false);
+	_domain = generateRandomString(10);
+	return (true);
+}
+
+bool	Cookie::setSecure(const std::string &secure){
+	if (secure.empty())
+		return (false);
+	_secure = generateRandomString(10);
+	return (true);
+}
+
+bool	Cookie::setHttpOnly(const std::string &httpOnly){
+	if (httpOnly.empty())
+		return (false);
+	_httpOnly = generateRandomString(10);
+	return (true);
+}
+
+std::string	Cookie::getName(){
+	return (_name);
+}
+
+std::string	Cookie::getValue(){
+	return (_value);
+}
+
+std::string	Cookie::getExpires(){
+	return (_expires);
+}
+
+std::string	Cookie::getPath(){
+	return (_path);
+}
+
+std::string	Cookie::getDomain(){
+	return (_domain);
+}
+
+std::string	Cookie::getSecure(){
+	return (_secure);
+}
+
+std::string	Cookie::getHttpOnly(){
+	return (_httpOnly);
+}
+
+std::string	Response::GenerateRandomCookie(Cookie *cookie){
+	std::string	cookie_str;
+
+	if (cookie == NULL)
+		return ("");
+	cookie_str = "";
+	if (!cookie->getExpires().empty())
+		cookie_str += "; Expires=" + cookie->getExpires();
+	if (!cookie->getPath().empty())
+		cookie_str += "; Path=" + cookie->getPath();
+	if (!cookie->getDomain().empty())
+		cookie_str += "; Domain=" + cookie->getDomain();
+	if (!cookie->getSecure().empty())
+		cookie_str += "; Secure";
+	if (!cookie->getHttpOnly().empty())
+		cookie_str += "; HttpOnly";
+	return (cookie_str);
+}
 
 bool	Response::setMetadata(const std::string &key, const std::string &value){
 
@@ -63,42 +182,8 @@ void	Response::_GenerateHEAD(){
 	_HEAD += "\r\n";
 }
 
-static void	convert2Hex(std::string &str){
-	std::string	converted;
-	std::string	hex = "0123456789ABCDEF";
-
-	for (size_t i = 0; i < str.size(); i++){
-		if (isalnum(str[i]) || str[i] == '-' || str[i] == '_' || str[i] == '.' || str[i] == '~')
-			converted += str[i];
-		else{
-			converted += '%';
-			converted += hex[str[i] / 16];
-			converted += hex[str[i] % 16];
-		}
-	}
-	str = converted;
-}
-
-void	Response::_GenerateCookie(){
-	std::map<std::string, std::string>::iterator	it;
-	std::string	cookie;
-
-	it = _RequestPacket->getCookies().begin();
-	while (it != _RequestPacket->getCookies().end()){
-		cookie += it->first + "=" + it->second + "; ";
-		it++;
-	}
-	if (!cookie.empty())
-		cookie = cookie.substr(0, cookie.size() - 2);
-	convert2Hex(cookie);
-	setMetadata("Set-Cookie", cookie);
-	//we should add this function to the function that will generate the response packet
-	//in our case it's _GenerateResponsePacket
-}
-
 std::string Response::render_response(){
-	std::string	resp;
-
+	std::string resp;
 	if (_HEAD.empty())
 		_GenerateHEAD();
 	resp = _HEAD + _Body;
@@ -154,6 +239,7 @@ Response::Response(Request *req){
 	_Body = "";
 	_RequestPacket = req;
 	setMetadata("SERVER", "Webserv/1.0");
+	setMetadata("Set-Cookie", "session=" + generateRandomString(10));
 }
 
 Response::Response(int status_code){

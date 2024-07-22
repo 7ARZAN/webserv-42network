@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Werror -Wformat=2 -ffast-math -pedantic -ggdb -O3 -std=c++98
+CFLAGS = -Wall -Wextra -Werror -Wformat=2 -ffast-math -pedantic -ggdb -g
 CC = g++
 NAME = webserver
 LIBCONFPP = lib/libconfpp/libconfpp.a

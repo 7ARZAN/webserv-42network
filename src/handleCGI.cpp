@@ -24,6 +24,17 @@ std::string	handleCGI::getCGIPath(){
 	return ("");
 }
 
+CGI_TYPE	cgi_type(const std::string &Path){
+	std::string	extension = Path.substr(Path.find_last_of('.') + 1);
+	std::string	extensions[] = {"php", "py", "pl", "rb", "cgi"};
+	CGI_TYPE	types[] = {PHP, PY, PL, RB, CGI};
+
+	for (int i = 0; i < 5; i++)
+		if (extension == extensions[i])
+			return (types[i]);
+	return (NOCGI);
+}
+
 bool	isCGI(const std::string &Path){
 	std::string	extension = Path.substr(Path.find_last_of('.') + 1);
 	std::string	extensions[] = {"php", "py", "pl", "rb", "cgi"};
@@ -50,7 +61,11 @@ std::map<std::string, std::string>	handleCGI::getCGIEnv(){
 	envs["SERVER_NAME"] = "webserver";
 	envs["SERVER_PORT"] = search_val_table(req->getRequest()->getConfig(), "port");
 	envs ["CONTENT_TYPE"] = req->getRequest()->getMetadata("Content-Type");
+	if (req->getRequest()->getMetadata("Content-Type").empty())
+		envs ["CONTENT_TYPE"] = "text/html";
 	envs ["CONTENT_LENGTH"] = req->getRequest()->getMetadata("Content-Length");
+	if (req->getRequest()->getMetadata("Content-Length").empty())
+		envs ["CONTENT_LENGTH"] = "0";
 	envs ["SCRIPT_NAME"] = path;
 	envs ["REQUEST_URI"] = uri;
 	envs["SERVER_PROTOCOL"] = req->getRequest()->getVersion();
@@ -59,8 +74,10 @@ std::map<std::string, std::string>	handleCGI::getCGIEnv(){
 	envs["SCRIPT_FILENAME"] = path ;
 	envs["QUERY_STRING"] = req->getRequest()->getquery() ;
 
-	if (ext == "php")
+	if (ext == "php"){
 		envs["PHP_SELF"] =  search_val_table(req->getRequest()->getConfig(), "PHPCGI") ;
+		envs["REDIRECT_STATUS"] = "0" ;
+	}
 	else if (ext == "py")
 		envs["PYTHONPATH"] = search_val_table(req->getRequest()->getConfig(), "PYCGI") ;
 	else if (ext == "pl")
@@ -81,7 +98,8 @@ char **maptoenv(std::map<std::string, std::string> menvs){
 	bzero(env, menvs.size() + 1);
 	while (it != menvs.end()){
 		env[i] = new char[it->first.size() + it->second.size() + 2];
-		env_element = it->first + "=" + it->second.data();
+		bzero(env[i], it->first.size() + it->second.size() + 2);
+		env_element = it->first + "=" + it->second;
 		strncpy(env[i], env_element.data(), env_element.size());
 		i++;
 		it++;
@@ -102,16 +120,16 @@ void	handleCGI::execCGI(){
 	pid_t	pid;
 	int	status;
 	char	buffer[1024];
-	int	bytes;
+	size_t	bytes;
 	int	outpipes[2];
 	int	inpipes[2];
-	char	*argv[3];
+	char	*argv[4];
 	char	**env;
 	std::string cgi_output;
 	std::map<std::string, std::string> menv = getCGIEnv();
 
 	env = maptoenv(menv);
-	if (getCGIPath().empty() == true){
+	if (getCGIPath().empty() == true || access(getCGIPath().c_str(), X_OK) == -1){
 		this->req->setStatusCode(500);
 		return;
 	}
@@ -138,17 +156,24 @@ void	handleCGI::execCGI(){
 		exit(EXIT_SUCCESS);
 	}
 	else{
+		logx.info("executing :" + path);
 		close(inpipes[0]);
 		close(outpipes[1]);
+		if (this->req->getRequest()->getMethod() == "GET"){
+			write(inpipes[1], "\n",1);
+
+		}
 		if (this->req->getRequest()->getBody().empty() == false){
 			write(inpipes[1], this->req->getRequest()->getBody().c_str(),
 					this->req->getRequest()->getBody().size());
 		}
-
-		while ((bytes = read(outpipes[0], buffer, sizeof(buffer))) > 0){
+		while ((bytes = read(outpipes[0], buffer, 1)) > 0){
 			cgi_output.append(buffer, bytes);
 			bzero(buffer, 1024);
 		}
+
+
+		this->req->setMetadata("Content-Type", "text/html");
 		this->req->setBody(cgi_output);
 		waitpid(pid, &status, 0);
 	}

@@ -11,12 +11,18 @@ print("<h1>Simple CGI Script with cgi module</h1>")
 # Create instance of FieldStorage
 form = cgi.FieldStorage()
 
+name = ""
+age = ""
 # Get data from fields
-name = form.getvalue('name')
-age = form.getvalue('age')
+try :
+    name = form.getvalue('name')
+    age = form.getvalue('age')
+except :
+    print("No name nor age")
+
 
 # Print HTML form
-print("<form method='post' action='/tarzan.py'>")
+print("<form method='post' action='python.py'>")
 print("Name: <input type='text' name='name'><br>")
 print("Age: <input type='text' name='age'><br>")
 print("<input type='submit' value='Submit'>")

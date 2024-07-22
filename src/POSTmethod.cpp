@@ -35,11 +35,11 @@ void	Response::POSTFILE(std::string boundary){
 }
 
 void	Response::POST(){
-	multipart	req;
-	std::vector<std::string>	boundary;
-	std::string	content_type = _RequestPacket->getMetadata("Content-Type");
-	std::string	rootpath = search_val_table(_RequestPacket->getConfig(), "root_dir");
-	std::string	FilePath = rootpath + _RequestPacket->getUri();
+	multipart req;
+	std::vector<std::string> boundary;
+	std::string content_type = _RequestPacket->getMetadata("Content-Type");
+	std::string rootpath = search_val_table(_RequestPacket->getConfig(), "root_dir");
+	std::string FilePath = rootpath + _RequestPacket->getUri();
 	handleCGI	cgi(this, FilePath);
 
 	if (isCGI(FilePath) == true){
@@ -48,9 +48,10 @@ void	Response::POST(){
 	}
 	if (strncmp(content_type.c_str(), "multipart/form-data", 19) == 0){
 		boundary = ohmysplit(content_type.substr(content_type.find("; ") + 2), "=");
-		if (boundary[0] == "boundary")
+		if (boundary[0] == "boundary"){
 			POSTFILE(boundary[1]);
-		else
+		} else {
 			setStatusCode(403);
+		}
 	}
 }
