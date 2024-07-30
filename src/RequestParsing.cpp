@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 01:51:39 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/22 03:57:44 by mlalama          ###   ########.fr       */
+/*   Updated: 2024/07/31 00:15:10 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../includes/webserver.hpp"
 #include "../includes/connection.hpp"
 
-std::vector<std::string> ohmysplit(const std::string &str, const std::string &sep)
+std::vector<std::string>	ohmysplit(const std::string &str, const std::string &sep)
 {
 	size_t						start = 0;
 	size_t						end = 0;
@@ -71,12 +71,8 @@ void	Request::setMetadata(const std::string &key, const std::string &value){
 	_Metadata[key] = value;
 }
 
-void	Request::setCookies(const std::string &key, const std::string &value){
-	_cookies[key] = value;
-}
-
 std::string Request::getquery(){
-	return (this->query);
+	return (this->_Query);
 }
 
 bool	Request::parseRequest(){
@@ -105,11 +101,10 @@ bool	Request::parseRequest(){
 		if (query.size() != 2)
 			throw (Response(400));
 		setUri(correct_Format(query[0]));
-		this->query = query[1];
+		this->_Query = query[1];
 	}
-	else{
+	else
 		setUri(correct_Format(list[1]));
-	}
 	if (_Uri.size() > PATH_MAX)
 		throw (Response(415));
 	setVersion(correct_Format(list[2]));
@@ -119,25 +114,18 @@ bool	Request::parseRequest(){
 		logx.error(getMetadata("Accept"));
 		throw (Response(411));
 	}
-
 	body_size = std::atoi(getMetadata("Content-Length").c_str());
-
 	if (body_size > INT_MAX || body_size < 0 || getMetadata("Content-Length").size() > 9)
 		throw (Response(413));
-
 	if (body_size <= (int) request->buffer.size()){
 		_Body = request->buffer.substr(0, body_size);
-		request->left = 0;
-		request->status = READY; 
-		request->buffer.erase(request->buffer.begin(),
-				request->buffer.begin() + body_size);
+		request->buffer.erase(0, body_size);
+		request->status = READY;
 	}
-	else
-	{
-		_Body = request->buffer.substr(0, request->buffer.size());
-		request->left = body_size - request->buffer.size();
-		request->buffer.erase(0, request->buffer.size());
-		request->status = READING_BODY;
+	else{
+		_Body = request->buffer;
+		request->buffer.erase();
+		request->status = BODY_READ;
 	}
 	return (true);
 }
@@ -155,23 +143,6 @@ bool	Request::parseMetadata(std::stringstream &header){
 		if (list.size() != 2)
 			return (false);
 		setMetadata(correct_Format(list[0]), correct_Format(list[1]));
-	}
-	return (true);
-}
-
-bool	Request::parseCookies(){
-	std::string	cookies;
-	std::vector<std::string>	list;
-	std::vector<std::string>	cookie;
-	size_t	index;
-
-	index = -1;
-	cookies = getMetadata("Cookie");
-	list = ohmysplit(cookies, "; ");
-	while (++index < list.size()){
-		cookie = ohmysplit(list[index], "=");
-		if (cookie.size() == 2)
-			_cookies[cookie[0]] = cookie[1];
 	}
 	return (true);
 }
@@ -196,10 +167,6 @@ std::string	Request::getMetadata(const std::string &key) const{
 	if (_Metadata.find(key) == _Metadata.end())
 		return ("");
 	return (_Metadata.at(key));
-}
-
-std::map<std::string, std::string>	Request::getCookies() const{
-	return (_cookies);
 }
 
 Request::Request(ws_delivery *request, ws_delivery *response, ws_config_table *table){

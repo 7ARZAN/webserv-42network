@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 02:44:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2024/07/22 05:01:20 by elakhfif         ###   ########.fr       */
+/*   Updated: 2024/07/31 00:17:14 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@ Cookie::~Cookie(){
 }
 
 static std::string	generateRandomString(int length){
-	std::string		str;
-	std::string		charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	int				charset_len = charset.size();
+	std::string		string;
+	std::string		charset;
+	int				charsetlen;
 
+	charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	charsetlen = charset.size();
 	for (int i = 0; i < length; i++)
-		str += charset[rand() % charset_len];
-	return (str);
+		string += charset[rand() % charsetlen];
+	return (string);
 }
 
 bool	Cookie::setName(const std::string &name){

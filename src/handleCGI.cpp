@@ -90,26 +90,29 @@ std::map<std::string, std::string>	handleCGI::getCGIEnv(){
 }
 
 char **maptoenv(std::map<std::string, std::string> menvs){
-	char **env = new char*[menvs.size() + 1];
-	std::map<std::string, std::string>::iterator it = menvs.begin();
+	char	**env;
+	std::map<std::string, std::string>::iterator	it;
 	std::string	env_element;
-	int i = 0;
+	int		i;
 
+	env = new char*[menvs.size() + 1];
+	it = menvs.begin();
+	i = 0;
 	bzero(env, menvs.size() + 1);
 	while (it != menvs.end()){
 		env[i] = new char[it->first.size() + it->second.size() + 2];
 		bzero(env[i], it->first.size() + it->second.size() + 2);
 		env_element = it->first + "=" + it->second;
 		strncpy(env[i], env_element.data(), env_element.size());
-		i++;
 		it++;
+		i++;
 	}
 	env[i] = NULL;
 	return env;
 }
 
 
-handleCGI::handleCGI(Response *request, std::string path) {
+handleCGI::handleCGI(Response *request, std::string path){
 	this->req = request;
 	this->path = path;
 }
@@ -118,15 +121,14 @@ handleCGI::handleCGI(Response *request, std::string path) {
 
 void	handleCGI::execCGI(){
 	pid_t	pid;
-	int	status;
 	char	buffer[1024];
 	size_t	bytes;
 	int	outpipes[2];
 	int	inpipes[2];
 	char	*argv[4];
 	char	**env;
-	std::string cgi_output;
-	std::map<std::string, std::string> menv = getCGIEnv();
+	std::string	cgi_output;
+	std::map<std::string, std::string>	menv = getCGIEnv();
 
 	env = maptoenv(menv);
 	if (getCGIPath().empty() == true || access(getCGIPath().c_str(), X_OK) == -1){
@@ -136,10 +138,8 @@ void	handleCGI::execCGI(){
 	argv[0] = (char *) getCGIPath().c_str();
 	argv[1] = (char *) path.c_str();
 	argv[2] = NULL;
-
-	pipe(outpipes) ;
-	pipe(inpipes) ;
-
+	pipe(outpipes);
+	pipe(inpipes);
 	pid = fork();
 	if (pid == 0){
 		close(inpipes[1]);
@@ -152,29 +152,26 @@ void	handleCGI::execCGI(){
 		close(outpipes[1]);
 
 		if (execve(argv[0], argv, env) == -1)
-			std::cerr << "execve error" << std::endl;
+			this->req->setStatusCode(500);
 		exit(EXIT_SUCCESS);
 	}
-	else{
+	else
+	{
 		logx.info("executing :" + path);
 		close(inpipes[0]);
 		close(outpipes[1]);
-		if (this->req->getRequest()->getMethod() == "GET"){
+		if (this->req->getRequest()->getMethod() == "GET")
 			write(inpipes[1], "\n",1);
-
-		}
-		if (this->req->getRequest()->getBody().empty() == false){
-			write(inpipes[1], this->req->getRequest()->getBody().c_str(),
+		if (this->req->getRequest()->getBody().empty() == false)
+			write(inpipes[1], this->req->getRequest()->getBody().c_str(), 
 					this->req->getRequest()->getBody().size());
-		}
-		while ((bytes = read(outpipes[0], buffer, 1)) > 0){
+		close(inpipes[1]);
+		while ((bytes = read(outpipes[0], buffer, 1024)) > 0)
 			cgi_output.append(buffer, bytes);
-			bzero(buffer, 1024);
-		}
-
-
+		close(outpipes[0]);
+		this->req->setStatusCode(200);
 		this->req->setMetadata("Content-Type", "text/html");
+		this->req->setMetadata("Content-Length", std::to_string(cgi_output.size()));
 		this->req->setBody(cgi_output);
-		waitpid(pid, &status, 0);
 	}
 }

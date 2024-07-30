@@ -1,7 +1,6 @@
 #ifndef CONNECTION_HPP
 #define CONNECTION_HPP
 
-#include <iostream>
 #include <vector>
 #include <arpa/inet.h>
 #include <strings.h>
