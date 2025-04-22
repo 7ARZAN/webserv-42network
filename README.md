@@ -193,5 +193,3 @@ Special thanks to the open-source community for tools and libraries.
 
 Feel free to star ⭐ this repository if you find it useful!
 
-
-# lighttpd clone works perfectly with Brave Browser !!
