@@ -10,99 +10,96 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	RESPONSE_HPP
+#ifndef RESPONSE_HPP
 # define RESPONSE_HPP
 
 # include <string>
 # include <map>
+# include <vector>
 # include <sys/types.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <fstream>
 # include <string.h>
-# include <vector>
 # include <unistd.h>
 # include "RequestParsing.hpp"
 
 # define STAT_FAIL 1
 # define STAT_SUCCESS 0
 
-class	Cookie{
+class SessionManager;
+
+class Cookie {
 	private:
-		std::string	_name;
-		std::string	_value;
-		std::string	_expires;
-		std::string	_path;
-		std::string	_domain;
-		std::string	_secure;
-		std::string	_httpOnly;
+		std::string _name;
+		std::string _value;
+		std::string _expires;
+		std::string _path;
+		bool _secure;
+		bool _httpOnly;
 
 	public:
 		Cookie();
 		~Cookie();
 
-		bool	setName(const std::string &name);
-		bool	setValue(const std::string &value);
-		bool	setExpires(const std::string &expires);
-		bool	setPath(const std::string &path);
-		bool	setDomain(const std::string &domain);
-		bool	setSecure(const std::string &secure);
-		bool	setHttpOnly(const std::string &httpOnly);
+		bool setName(const std::string &name);
+		bool setValue(const std::string &value);
+		bool setExpires(const std::string &expires);
+		bool setPath(const std::string &path);
+		void setSecure(bool secure);
+		void setHttpOnly(bool httpOnly);
 
-		std::string	getName();
-		std::string	getValue();
-		std::string	getExpires();
-		std::string	getPath();
-		std::string	getDomain();
-		std::string	getSecure();
-		std::string	getHttpOnly();
+		std::string serialize() const;
 };
 
-class	Response
-{
+class Response {
 	private:
-		Request		*_RequestPacket;
-		std::string	_statusCode;
-		std::string	_ResponsePacket;
-		std::string	_Body;
-		std::string	_HEAD;
-		std::vector<Cookie>	Cookies;
-		std::map<std::string, std::string>	_Metadata;
+		Request *_RequestPacket;
+		std::string _statusCode;
+		std::string _ResponsePacket;
+		std::string _Body;
+		std::string _HEAD;
+		std::vector<Cookie> _Cookies;
+		std::map<std::string, std::string> _Metadata;
+		SessionManager *_sessionManager;
 
-		std::string	_GetPacketDate();
-		void	_GenerateHEAD();
-		std::string	_GetFileExtension(const std::string &path);
+		std::string _GetPacketDate();
+		void _GenerateHEAD();
+		std::string _GetFileExtension(const std::string &path);
 
 	public:
-		Response(Request *req);
+		Response(Request *req, SessionManager *sessionManager);
 		Response(int status_code);
 		~Response();
-		
-		int	getStatusCode();
-		bool	setStatusCode(int code);
 
-		bool	setMetadata(const std::string &key, const std::string &value);
-		bool	setBody(const std::string &informations);
-		
-		bool	sendResponse(int fd);
-		bool	Redirect(const std::string &uri, bool isPermanent);
+		int getStatusCode();
+		bool setStatusCode(int code);
 
-		void	setRequest(Request &request);
-		Request	*getRequest();
+		bool setMetadata(const std::string &key, const std::string &value);
+		bool setBody(const std::string &informations);
 
-		void	handleResponse();
+		bool sendResponse(int fd);
+		bool Redirect(const std::string &uri, bool isPermanent);
 
-		std::string	GenerateRandomCookie(Cookie *cookie);
+		void setRequest(Request &request);
+		Request *getRequest();
 
-		std::string	render_response();
-		void		DELETE();
-		void		GET();
-		void		POST();
-		void		POSTFILE(std::string boundary);
+		void handleResponse();
+
+		void addCookie(const Cookie &cookie);
+		std::string createSession();
+		std::string getSessionData(const std::string &sessionId, const std::string &key);
+		void setSessionData(const std::string &sessionId, const std::string &key, const std::string &value);
+
+		std::string render_response();
+		void DELETE();
+		void GET();
+		void POST();
+		void POSTFILE(std::string boundary);
 };
 
-bool	isExist(const std::string &fullPath);
-bool	is_dir(std::string path);
+bool isExist(const std::string &fullPath);
+bool is_dir(std::string path);
 
 #endif

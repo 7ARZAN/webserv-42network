@@ -4,11 +4,11 @@ NAME = webserver
 LIBCONFPP = lib/libconfpp/libconfpp.a
 OBJ = build/main.o build/connection.o build/RequestParsing.o build/log.o build/monitor.o \
       build/Response.o build/DELETEmethod.o build/GETmethod.o build/POSTmethod.o \
-      build/multipart.o build/handleCGI.o
+      build/multipart.o build/handleCGI.o build/SessionManager.o
 
 SRC = src/main.cpp src/connection.cpp src/RequestParsing.cpp src/log.cpp src/monitor.cpp \
       src/Response.cpp src/GETmethod.cpp src/POSTmethod.cpp src/DELETEmethod.cpp src/multipart.cpp \
-      src/handleCGI.cpp \
+      src/handleCGI.cpp build/SessionManager.cpp \
 
 INCLUDES = lib/libconfpp/includes
 
