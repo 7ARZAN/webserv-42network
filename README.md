@@ -34,7 +34,7 @@ Dependencies: Standard C++ library, POSIX libraries (sys/socket.h, poll.h, etc.)
 Building
 
 Clone the repository:
-git clone https://github.com/yourusername/webserv.git
+git clone https://github.com/7ARZAN/webserv-42network.git
 cd webserv
 
 
